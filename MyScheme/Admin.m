@@ -14,6 +14,7 @@
 {
     return [self initWithUserName:@"" password:@"" rev:@""];
 }
+// hello mama :)
 
 - (id)initWithUserName:(NSString *)username
               password:(NSString *)password
