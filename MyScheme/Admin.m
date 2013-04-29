@@ -15,7 +15,6 @@
     return [self initWithUserName:@"" password:@"" rev:@""];
 }
 
-
 - (id)initWithUserName:(NSString *)username
               password:(NSString *)password
                    rev:(NSString *)rev
