@@ -10,6 +10,10 @@
 		B4A21279172E9E3400C699BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A21278172E9E3400C699BC /* Foundation.framework */; };
 		B4A2127C172E9E3400C699BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A2127B172E9E3400C699BC /* main.m */; };
 		B4A21280172E9E3400C699BC /* MyScheme.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4A2127F172E9E3400C699BC /* MyScheme.1 */; };
+		B4A21288172E9EB500C699BC /* Admin.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A21287172E9EB500C699BC /* Admin.m */; };
+		B4A2128B172E9EDC00C699BC /* AdminService.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A2128A172E9EDC00C699BC /* AdminService.m */; };
+		B4A2128E172E9F0900C699BC /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A2128D172E9F0900C699BC /* Student.m */; };
+		B4A21291172E9F2300C699BC /* StudentService.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A21290172E9F2300C699BC /* StudentService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +35,14 @@
 		B4A2127B172E9E3400C699BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B4A2127E172E9E3400C699BC /* MyScheme-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyScheme-Prefix.pch"; sourceTree = "<group>"; };
 		B4A2127F172E9E3400C699BC /* MyScheme.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MyScheme.1; sourceTree = "<group>"; };
+		B4A21286172E9EB500C699BC /* Admin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Admin.h; sourceTree = "<group>"; };
+		B4A21287172E9EB500C699BC /* Admin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Admin.m; sourceTree = "<group>"; };
+		B4A21289172E9EDC00C699BC /* AdminService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdminService.h; sourceTree = "<group>"; };
+		B4A2128A172E9EDC00C699BC /* AdminService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdminService.m; sourceTree = "<group>"; };
+		B4A2128C172E9F0900C699BC /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
+		B4A2128D172E9F0900C699BC /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
+		B4A2128F172E9F2300C699BC /* StudentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentService.h; sourceTree = "<group>"; };
+		B4A21290172E9F2300C699BC /* StudentService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +86,14 @@
 			isa = PBXGroup;
 			children = (
 				B4A2127B172E9E3400C699BC /* main.m */,
-				B4A2127F172E9E3400C699BC /* MyScheme.1 */,
+				B4A21286172E9EB500C699BC /* Admin.h */,
+				B4A21287172E9EB500C699BC /* Admin.m */,
+				B4A21289172E9EDC00C699BC /* AdminService.h */,
+				B4A2128A172E9EDC00C699BC /* AdminService.m */,
+				B4A2128C172E9F0900C699BC /* Student.h */,
+				B4A2128D172E9F0900C699BC /* Student.m */,
+				B4A2128F172E9F2300C699BC /* StudentService.h */,
+				B4A21290172E9F2300C699BC /* StudentService.m */,
 				B4A2127D172E9E3400C699BC /* Supporting Files */,
 			);
 			path = MyScheme;
@@ -83,6 +102,7 @@
 		B4A2127D172E9E3400C699BC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B4A2127F172E9E3400C699BC /* MyScheme.1 */,
 				B4A2127E172E9E3400C699BC /* MyScheme-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -140,6 +160,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4A2127C172E9E3400C699BC /* main.m in Sources */,
+				B4A21288172E9EB500C699BC /* Admin.m in Sources */,
+				B4A2128B172E9EDC00C699BC /* AdminService.m in Sources */,
+				B4A2128E172E9F0900C699BC /* Student.m in Sources */,
+				B4A21291172E9F2300C699BC /* StudentService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
