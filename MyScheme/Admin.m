@@ -15,6 +15,7 @@
     return [self initWithUserName:@"" password:@"" rev:@""];
 }
 
+// Committed and pushed project to GitHub
 
 - (id)initWithUserName:(NSString *)username
               password:(NSString *)password
