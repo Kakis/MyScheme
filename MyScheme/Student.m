@@ -10,4 +10,57 @@
 
 @implementation Student
 
+
+- (id)init
+{
+    return [self initWithLastName:@"" firstName:@"" course:@""];
+}
+
+
+- (id)initWithLastName:(NSString *)lastName
+             firstName:(NSString *)firstName
+                course:(NSString *)course
+{
+    self = [super init];
+    if (self) {
+        self.lastName = lastName;
+        self.firstName = firstName;
+        self.course = course;
+        self->_id = [[NSUUID UUID] UUIDString];
+        self->_rev = [[NSUUID UUID] UUIDString];
+    }
+    return self;
+}
+
+
+-(BOOL)getPersonalMessage:(Student *)id msg:(NSString *)msg
+{
+    return YES;
+}
+
+
+-(BOOL)getCourseMessages:(NSString *)msg
+{
+    return YES;
+}
+
+
+-(NSUInteger)hash
+{
+    return 37 * [self.id hash];
+}
+
+
+-(BOOL)isEqual:(id)student
+{
+    if(student == self){
+        return YES;
+    }
+    if(student && [student isMemberOfClass:[self class]]){
+        return [[student id] isEqualToString:self.id];
+    }
+    return NO;
+}
+
+
 @end
