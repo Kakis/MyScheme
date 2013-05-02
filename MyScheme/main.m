@@ -15,7 +15,7 @@ int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
-        // comment
+
 /////////////////////////////////////// Initializing objects in Schedule /////////////////////////////////////
 
         
