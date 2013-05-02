@@ -63,4 +63,10 @@
 }
 
 
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"Student %@ %@ with id: [%@] attends the %@class", [self firstName], [self lastName], [self id], [self course]];
+}
+
+
 @end

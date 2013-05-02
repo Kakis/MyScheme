@@ -38,10 +38,6 @@ typedef void (^GetStudentResponce)(NSArray *getStudent);
     adminPassword:(Admin *)admin;
 
 
--(BOOL)updateStudent:(Student *)student
-       adminPassword:(Admin *)admin;
-
-
 -(BOOL)sendMessage:(NSString *)msg toStudent:(Student *)id adminPassword:(Admin *)admin;
 
 
@@ -55,6 +51,15 @@ typedef void (^GetStudentResponce)(NSArray *getStudent);
 
 -(void) getStudentWithID:(NSString*)_id
             onCompletion:(GetStudentResponce) getStudentResponce;
+
+
+-(BOOL)updateStudent:(Student *)student withID:(NSString *)id andRevNumber:(NSString*)rev;
+
+
+////////////// Ej färdigt försök att göra getStudent-anropet smidigare från main //////////////
+//
+//-(void) getStudent:(Student*)student
+//            onCompletion:(GetStudentResponce) getStudentResponce;
 
 
 @end

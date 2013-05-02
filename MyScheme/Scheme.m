@@ -59,7 +59,7 @@ static NSString * const javaKey = @"java_key";
 
 -(BOOL)addLesson:(Lesson *)lesson adminPassword:(Admin *)admin
 {
-    if([admin.password isEqualToString:@"coredev"]){
+    if([admin.password isEqualToString:@"admin"]){
         
         // Check course-key of lesson to be added
         if([lesson.course isEqualToString:@"appdev"]){
@@ -105,7 +105,7 @@ static NSString * const javaKey = @"java_key";
 
 -(BOOL)addStudent:(Student *)student adminPassword:(Admin *)admin
 {
-    if([admin.password isEqualToString:@"coredev"]){
+    if([admin.password isEqualToString:@"admin"]){
         if([student.course isEqualToString:@"appdev"])
         {
             [students[appdevKey] addObject:student];
@@ -114,12 +114,6 @@ static NSString * const javaKey = @"java_key";
         }
         return YES;
     }
-    return YES;
-}
-
-
--(BOOL)updateStudent:(Student *)student adminPassword:(Admin *)admin
-{
     return YES;
 }
 
@@ -158,10 +152,10 @@ static NSString * const javaKey = @"java_key";
 
 -(void) saveStudent:(Student *)student
 {
-    // Kör serialiserar av en student till JSON-format
+    // Kör serialisering av vår student till JSON-format
     NSDictionary *studentAsJson = [self serializeStudentToJson:student];
     
-    // Skapar ett NSData-objekt som håller i en JSON-formaterad student
+    // Skapar ett NSData-objekt som håller i vår student, JSON-formaterad
     NSData *studentAsData = [NSJSONSerialization dataWithJSONObject:studentAsJson
                                                             options:NSJSONWritingPrettyPrinted
                                                               error:NULL];
@@ -181,7 +175,7 @@ static NSString * const javaKey = @"java_key";
     // Lägger min student i HTTP bodyn
     [request setHTTPBody:studentAsData];
     
-    // Skapar min NSURLConnection
+    // Skapar min NSURLConnection och kör igång den
     NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:nil];
     [connection start];
 }
@@ -191,8 +185,9 @@ static NSString * const javaKey = @"java_key";
 
 -(void)getStudentWithID:(NSString *)_id onCompletion:(GetStudentResponce)getStudentResponce
 {
-    // Vi skapar en URL-pekare och tilldelar den en sträng med url'en till min databas students på iriscouch, matchat mot en students id
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://kakis.iriscouch.com/students/%@", _id]];
+    // Vi skapar en URL-pekare och tilldelar den en sträng med url'en till min databas schedule på iriscouch,
+    // matchat mot en students id
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://kakis.iriscouch.com/schedule/%@", _id]];
     
     // Vi skapar en NSMutableURLRequest, allokerar minnet och initerar den med url'en vi nyss skapade
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -215,6 +210,75 @@ static NSString * const javaKey = @"java_key";
                            }];
     
 }
+
+
+-(BOOL)updateStudent:(Student *)student withID:(NSString *)id andRevNumber:(NSString*)rev
+{
+    // Kör serialisering av vår student till JSON-format
+    NSDictionary *studentAsJson = [self serializeStudentToJson:student];
+    
+    // Skapar ett NSData-objekt som håller i vår student, JSON-formaterad
+    NSData *studentAsData = [NSJSONSerialization dataWithJSONObject:studentAsJson
+                                                            options:NSJSONWritingPrettyPrinted
+                                                              error:NULL];
+    
+    // Vi skapar en URL-pekare och tilldelar den en sträng med url'en till min databas schedule på iriscouch,
+    // matchat mot den student som vi vill uppdatera genom att ange id- och rev-nummer
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://kakis.iriscouch.com/schedule/%@?rev=%@", id, rev]];
+    
+    // Vi initierar en request med den url vi angivit
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[url standardizedURL]];
+    
+    // Vi sätter HTTP metoden till PUT
+    [request setHTTPMethod:@"PUT"];
+    
+    // Lägger min student i HTTP bodyn
+    [request setHTTPBody:studentAsData];
+    
+    // Ställer i HTTP headern in att jag kommer att skicka värden av typen application/json
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    // Skapar min NSURLConnection och kör igång den
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:nil];
+    [connection start];
+    
+    return YES;
+}
+
+
+//////////////// Ej färdigt försök att göra getStudent-anropet smidigare från main //////////////
+////
+//-(void)getStudent:(Student *)student onCompletion:(GetStudentResponce)getStudentResponce
+//{
+//
+//    NSString *_id = [NSString stringWithFormat:@"%@", student.id];
+//
+//    // Vi skapar en URL-pekare och tilldelar den en sträng med url'en till min databas students
+//    // på iriscouch, matchat mot en students id
+//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://kakis.iriscouch.com/schedule/%@", _id]];
+//
+//    // Vi skapar en NSMutableURLRequest, allokerar minnet och initerar med den url vi nyss skapat
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+//
+//    // Vi säger att vi vill få tillbaka json-värden med vår HTTP-förfrågan
+//    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//
+//    // Vi vill lägga en asynhron NSURLconection på kön och köra vårt block (^GetStudentResponce)
+//    // som vi definierat i h-filen
+//    [NSURLConnection sendAsynchronousRequest:request
+//                                       queue:queue
+//                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+//
+//                               // Vi serialiserar de data vi får tillbaka från json till ett
+//                               // student-objekt och pekar foundStudent mot detta.
+//                               NSArray *foundStudent = @[data];
+//
+//                               // Vi kör det block vi skickade som argument.
+//                               // Och skickar det vi får tillbaka (callback).
+//                               getStudentResponce(foundStudent);
+//                           }];
+//
+//}
 
 
 @end
