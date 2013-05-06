@@ -46,7 +46,9 @@ typedef void (^GetStudentResponce)(NSArray *getStudent);
 
 #pragma mark - Helper methods handling connections to couch
 
--(void) saveStudent:(Student *)student;
+//-(void) saveStudent:(Student *)student;
+
+-(void)saveStudentToDb:(Student *)student;
 
 
 -(void) getStudentWithID:(NSString*)_id

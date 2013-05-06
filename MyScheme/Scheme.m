@@ -150,7 +150,30 @@ static NSString * const javaKey = @"java_key";
 
 #pragma mark - Save a student to couch.db
 
--(void) saveStudent:(Student *)student
+//-(void)saveStudentToDb:(Student *)student
+//{
+//    
+//    
+//    NSData *asData = [NSJSONSerialization dataWithJSONObject:student.jsonValue options:NSJSONWritingPrettyPrinted error:NULL];
+//    
+//    NSString *myString = [[NSString alloc] initWithData:asData encoding:NSUTF8StringEncoding];
+//    
+//    NSURL *url= [NSURL URLWithString:@"http://kakis.iriscouch.com/scedule"];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+//                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+//                                                       timeoutInterval:10.0];
+//    
+//    [request setHTTPMethod:@"POST"];
+//    
+//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+//    [request setHTTPBody:[myString dataUsingEncoding:NSUTF8StringEncoding]];
+//    
+//    __unused NSURLConnection *connection= [[NSURLConnection alloc] initWithRequest:request
+//                                                                          delegate:nil];
+//    
+//}
+
+-(void) saveStudentToDb:(Student *)student
 {
     // Kör serialisering av vår student till JSON-format
     NSDictionary *studentAsJson = [self serializeStudentToJson:student];

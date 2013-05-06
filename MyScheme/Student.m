@@ -27,7 +27,6 @@
         self.firstName = firstName;
         self.course = course;
         self->_id = [[NSUUID UUID] UUIDString];
-        self->_rev = [[NSUUID UUID] UUIDString];
     }
     return self;
 }

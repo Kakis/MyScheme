@@ -29,6 +29,7 @@ static NSString * const javaKey = @"java_key";
 {
     NSDictionary *lessons;
     NSDictionary *students;
+    Scheme *scheme;
     Lesson *appdevLesson;
     Student *appdevStudent;
     Admin *admin;
@@ -46,10 +47,11 @@ static NSString * const javaKey = @"java_key";
                  javaKey:[[NSMutableSet alloc] init]};
     
     appdevLesson = [[Lesson alloc] initWithCourse:@"appdev"
-                                       lessontime:@"9:15"
-                                          teacher:@"Anders"
-                                        classroom:@"4108"
-                                       assignment:@"Read about NSArray"];
+                                                   weekday:@"monday"
+                                                lessontime:@"09:00"
+                                                   teacher:@"Anders"
+                                                 classroom:@"4108"
+                                                assignment:@"Read chapter 19: Object Instance Variables"];
 
     
     appdevStudent = [[Student alloc] initWithLastName:@"Hagfeldt"
@@ -57,7 +59,9 @@ static NSString * const javaKey = @"java_key";
                                                course:@"appdev"];
     
     admin = [[Admin alloc] initWithUserName:@"Anders"
-                                   password:@"coredev"];
+                                   password:@"admin"];
+    
+    scheme = [[Scheme alloc] init];
 }
 
 - (void)tearDown
@@ -66,14 +70,16 @@ static NSString * const javaKey = @"java_key";
     students = nil;
     appdevLesson = nil;
     appdevStudent = nil;
+    admin = nil;
+    scheme = nil;
 }
 
 
--(void)testCanAddStudent:(Student *)student adminPassword:(Admin *)adminPasswordü
-{
-    BOOL addedStudent = [students addStudent:appdevStudent];
-    STAssertTrue(addStudent, @"A student should have been added.");
-}
+//-(void)testAddStudent:(Student *)student adminPassword:(Admin *)admin
+//{
+//    BOOL addedStudent = [scheme addStudent:appdevStudent adminPassword:admin];
+//    STAssertTrue(addedStudent, @"A student should have been added.");
+//}
 
 
 @end
