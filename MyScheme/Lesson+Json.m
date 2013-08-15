@@ -14,14 +14,16 @@
 {
     NSMutableDictionary *selfAsJson = [[NSMutableDictionary alloc] init];
 
+    selfAsJson[@"name"] = self.name;
+    selfAsJson[@"type"] = self.type;
     selfAsJson[@"course"] = self.course;
-    selfAsJson[@"weekday"] = self.weekday;
+    selfAsJson[@"week"] = self.week;
+    selfAsJson[@"day"] = self.day;
     selfAsJson[@"lessontime"] = self.lessontime;
     selfAsJson[@"teacher"] = self.teacher;
     selfAsJson[@"classroom"] = self.classroom;
     selfAsJson[@"assignment"] = self.assignment;
     selfAsJson[@"_id"] = self.id;
-    selfAsJson[@"_rev"] = self.rev;
     
     return selfAsJson;
 }

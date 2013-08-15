@@ -13,18 +13,23 @@
 
 - (id)init
 {
-    return [self initWithLastName:@"" firstName:@"" course:@""];
+    return [self initWithLastName:@""
+                        firstName:@""
+                             type:@""
+                           course:@""];
 }
 
 
 - (id)initWithLastName:(NSString *)lastName
              firstName:(NSString *)firstName
+                  type:(NSString *)type
                 course:(NSString *)course
 {
     self = [super init];
     if (self) {
         self.lastName = lastName;
         self.firstName = firstName;
+        self.type = type;
         self.course = course;
         self->_id = [[NSUUID UUID] UUIDString];
     }

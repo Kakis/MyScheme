@@ -13,17 +13,23 @@
 
 - (id)init
 {
-    return [self initWithCourse:@""
-                        weekday:@""
-                     lessontime:@""
-                        teacher:@""
-                      classroom:@""
-                     assignment:@""];
+    return [self initWithName:@""
+                         type:@""
+                       course:@""
+                         week:@""
+                          day:@""
+                   lessontime:@""
+                      teacher:@""
+                    classroom:@""
+                   assignment:@""];
 }
 
 
-- (id)initWithCourse:(NSString *)course
-             weekday:(NSString *)weekday
+- (id)initWithName:(NSString *)name
+              type:(NSString *)type
+            course:(NSString *)course
+                week:(NSString *)week
+                 day:(NSString *)day
           lessontime:(NSString *)lessontime
              teacher:(NSString *)teacher
            classroom:(NSString *)classroom
@@ -31,14 +37,16 @@
 {
     self = [super init];
     if (self) {
+        self.name = name;
+        self.type = type;
         self.course = course;
-        self.weekday = weekday;
+        self.week = week;
+        self.day = day;
         self.lessontime = lessontime;
         self.teacher = teacher;
         self.classroom = classroom;
         self.assignment = assignment;
         self->_id = [[NSUUID UUID] UUIDString];
-        self->_rev = [[NSUUID UUID] UUIDString];
     }
     return self;
 }
@@ -65,7 +73,7 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"You have an %@-lesson with %@ at %@ in room %@ on %@. Your assignment is to: %@", self.course, self.teacher, self.lessontime, self.classroom, self.weekday, self.assignment];
+    return [NSString stringWithFormat:@"\nYour %@ lesson about %@ in room %@ on %@ week %@ starts at %@. \nYour teacher %@ have given you the assignment to %@", self.course, self.name, self.classroom, self.day, self.week, self.lessontime, self.teacher, self.assignment];
 }
 
 

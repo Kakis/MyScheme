@@ -13,13 +13,15 @@
 @property (nonatomic, copy) NSString *lastName;
 @property (nonatomic, copy) NSString *firstName;
 @property (nonatomic, copy) NSString *course;
+@property (nonatomic, copy) NSString *type;
 @property (nonatomic, copy, readonly) NSString *id;
 
 
 
 -(id)initWithLastName:(NSString *)lastName
             firstName:(NSString *)firstName
-            course:(NSString *)course;
+                 type:(NSString *)type
+               course:(NSString *)course;
 
 
 -(BOOL)getPersonalMessage:(Student *)id msg:(NSString *)msg;

@@ -47,15 +47,18 @@ static NSString * const javaKey = @"java_key";
                  javaKey:[[NSMutableSet alloc] init]};
     
     appdevLesson = [[Lesson alloc] initWithCourse:@"appdev"
-                                                   weekday:@"monday"
-                                                lessontime:@"09:00"
-                                                   teacher:@"Anders"
-                                                 classroom:@"4108"
-                                                assignment:@"Read chapter 19: Object Instance Variables"];
+                                             type:@"lesson"
+                                             week:@"1"
+                                              day:@"monday"
+                                       lessontime:@"09:00"
+                                          teacher:@"Anders"
+                                        classroom:@"4108"
+                                       assignment:@"Read chapter 19: Object Instance Variables"];
 
     
     appdevStudent = [[Student alloc] initWithLastName:@"Hagfeldt"
                                             firstName:@"Jens"
+                                                 type:@"student"
                                                course:@"appdev"];
     
     admin = [[Admin alloc] initWithUserName:@"Anders"
@@ -75,9 +78,9 @@ static NSString * const javaKey = @"java_key";
 }
 
 
-//-(void)testAddStudent:(Student *)student adminPassword:(Admin *)admin
+//-(void)testAddNewStudent:(Student *)student adminPassword:(Admin *)admin
 //{
-//    BOOL addedStudent = [scheme addStudent:appdevStudent adminPassword:admin];
+//    BOOL addedStudent = [scheme addNewStudent:appdevStudent adminPassword:admin];
 //    STAssertTrue(addedStudent, @"A student should have been added.");
 //}
 

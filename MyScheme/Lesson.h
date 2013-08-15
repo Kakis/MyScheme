@@ -12,16 +12,21 @@
 @interface Lesson : NSObject
 
 @property (nonatomic, copy, readonly) NSString *id;
-@property (nonatomic, copy) NSString *rev;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *type;
 @property (nonatomic, copy) NSString *course;
-@property (nonatomic, copy) NSString *weekday;
+@property (nonatomic, copy) NSString *week;
+@property (nonatomic, copy) NSString *day;
 @property (nonatomic, copy) NSString *lessontime;
 @property (nonatomic, copy) NSString *teacher;
 @property (nonatomic, copy) NSString *classroom;
 @property (nonatomic, copy) NSString *assignment;
 
--(id)initWithCourse:(NSString *)course
-                weekday:(NSString *)weekday
+-(id)initWithName:(NSString *)name
+             type:(NSString *)type
+           course:(NSString *)course
+               week:(NSString *)week
+                day:(NSString *)day
          lessontime:(NSString *)lessontime
             teacher:(NSString *)teacher
           classroom:(NSString *)classroom

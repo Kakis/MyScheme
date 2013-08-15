@@ -17,6 +17,7 @@
     selfAsJson[@"_id"] = self.id;
     selfAsJson[@"lastName"] = self.lastName;
     selfAsJson[@"firstName"] = self.firstName;
+    selfAsJson[@"type"] = self.type;
     selfAsJson[@"course"] = self.course;
     
     return selfAsJson;

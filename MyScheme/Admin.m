@@ -12,7 +12,8 @@
 
 - (id)init
 {
-    return [self initWithUserName:@"" password:@""];
+    return [self initWithUserName:@""
+                         password:@""];
 }
 
 
