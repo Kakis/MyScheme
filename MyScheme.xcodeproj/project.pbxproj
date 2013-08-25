@@ -12,7 +12,8 @@
 		B4A21280172E9E3400C699BC /* MyScheme.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4A2127F172E9E3400C699BC /* MyScheme.1 */; };
 		B4A21288172E9EB500C699BC /* Admin.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A21287172E9EB500C699BC /* Admin.m */; };
 		B4A2128E172E9F0900C699BC /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A2128D172E9F0900C699BC /* Student.m */; };
-		B4A48CC817AA5CC60055ECEB /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A48CC717AA5CC60055ECEB /* Message.m */; };
+		B4A9307F17C7711E00EBE5F7 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9307D17C7711E00EBE5F7 /* Message.m */; };
+		B4A9308417C772F200EBE5F7 /* Message+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9308317C772F200EBE5F7 /* Message+Json.m */; };
 		B4ACBAF5172FBE5700FC9EDE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4ACBAF4172FBE5700FC9EDE /* SenTestingKit.framework */; };
 		B4ACBAF7172FBE5700FC9EDE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4ACBAF6172FBE5700FC9EDE /* Cocoa.framework */; };
 		B4ACBB01172FBE5700FC9EDE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4ACBAFF172FBE5700FC9EDE /* InfoPlist.strings */; };
@@ -53,8 +54,10 @@
 		B4A21287172E9EB500C699BC /* Admin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Admin.m; sourceTree = "<group>"; };
 		B4A2128C172E9F0900C699BC /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
 		B4A2128D172E9F0900C699BC /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
-		B4A48CC617AA5CC60055ECEB /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		B4A48CC717AA5CC60055ECEB /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		B4A9307D17C7711E00EBE5F7 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		B4A9307E17C7711E00EBE5F7 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		B4A9308217C772F200EBE5F7 /* Message+Json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Message+Json.h"; sourceTree = "<group>"; };
+		B4A9308317C772F200EBE5F7 /* Message+Json.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Message+Json.m"; sourceTree = "<group>"; };
 		B4ACBAF3172FBE5700FC9EDE /* SchemeTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SchemeTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4ACBAF4172FBE5700FC9EDE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		B4ACBAF6172FBE5700FC9EDE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -139,14 +142,16 @@
 				B4A21287172E9EB500C699BC /* Admin.m */,
 				B4A2128C172E9F0900C699BC /* Student.h */,
 				B4A2128D172E9F0900C699BC /* Student.m */,
+				B4A9307E17C7711E00EBE5F7 /* Message.h */,
+				B4A9307D17C7711E00EBE5F7 /* Message.m */,
+				B4A9308217C772F200EBE5F7 /* Message+Json.h */,
+				B4A9308317C772F200EBE5F7 /* Message+Json.m */,
 				B4ACBB0A172FC5F200FC9EDE /* Student+Json.h */,
 				B4ACBB0B172FC5F200FC9EDE /* Student+Json.m */,
 				B4DCBEC6172EF0F000DF6712 /* Lesson.h */,
 				B4DCBEC7172EF0F000DF6712 /* Lesson.m */,
 				B4ACBB0E172FC8F700FC9EDE /* Lesson+Json.h */,
 				B4ACBB0F172FC8F700FC9EDE /* Lesson+Json.m */,
-				B4A48CC617AA5CC60055ECEB /* Message.h */,
-				B4A48CC717AA5CC60055ECEB /* Message.m */,
 				B4ACBB09172FC58700FC9EDE /* JsonFormat.h */,
 			);
 			path = MyScheme;
@@ -296,7 +301,8 @@
 				B4DCBEC8172EF0F000DF6712 /* Lesson.m in Sources */,
 				B4ACBB0C172FC5F200FC9EDE /* Student+Json.m in Sources */,
 				B4ACBB10172FC8F700FC9EDE /* Lesson+Json.m in Sources */,
-				B4A48CC817AA5CC60055ECEB /* Message.m in Sources */,
+				B4A9307F17C7711E00EBE5F7 /* Message.m in Sources */,
+				B4A9308417C772F200EBE5F7 /* Message+Json.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,7 +2,7 @@
 //  Message+Json.m
 //  MyScheme
 //
-//  Created by Jens Hagfeldt on 2013-08-04.
+//  Created by Jens Hagfeldt on 2013-08-23.
 //  Copyright (c) 2013 Jens Hagfeldt. All rights reserved.
 //
 
@@ -14,12 +14,15 @@
 {
     NSMutableDictionary *selfAsJson = [[NSMutableDictionary alloc] init];
     
-    selfAsJson[@"recipient"] = self.recipient;
+    selfAsJson[@"title"] = self.title;
     selfAsJson[@"subject"] = self.subject;
-    selfAsJson[@"message"] = self.message;
+    selfAsJson[@"sender"] = self.sender;
+    selfAsJson[@"receiver"] = self.receiver;
     selfAsJson[@"type"] = self.type;
+    selfAsJson[@"message"] = self.message;
     
     return selfAsJson;
 }
+
 
 @end

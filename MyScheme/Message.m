@@ -10,31 +10,62 @@
 
 @implementation Message
 
+
 - (id)init
 {
-    return [self initWithRecipient:@""
-                           subject:@""
-                           message:@""
-                              type:@""];
+
+    return [self initWithTitle:@""
+                       subject:@""
+                        sender:@""
+                      receiver:@""
+                          type:@""
+                       message:@""
+                     isPrivate:NO];
 }
 
-
--(id)initWithRecipient:(NSString *)recipient
-               subject:(NSString *)subject
-               message:(NSString *)message
-                  type:(NSString *)type
+-(id)initWithTitle:(NSString *)title
+           subject:(NSString *)subject
+            sender:(NSString *)sender
+          receiver:(NSString *)receiver
+              type:(NSString *)type
+           message:(NSString *)message
+         isPrivate:(BOOL)YesOrNo
 {
     self = [super init];
     
     if (self) {
-        self.recipient = recipient;
+        self.title = title;
         self.subject = subject;
-        self.message = message;
+        self.sender = sender;
+        self.receiver = receiver;
         self.type = type;
-        self->_id = [[NSUUID UUID] UUIDString];
+        self.message = message;
+        self.isPrivate = NO;
     }
     return self;
 }
+
+//-(id)initWithSMS:(NSString *)sender
+//        receiver:(NSString *)receiver
+//         subject:(NSString *)subject
+//            type:(NSString *)type
+//    messageToAll:(NSString *)messageToAll
+//  privateMessage:(NSString *)privateMessage
+//
+//{
+//    self = [super init];
+//    
+//    if (self) {
+//        self.sender = sender;
+//        self.receiver = receiver;
+//        self.subject = subject;
+//        self.type = type;
+//        self.messageToAll = messageToAll;
+//        self.privateMessage = privateMessage;
+//        self->_id = [[NSUUID UUID] UUIDString];
+//    }
+//    return self;
+//}
 
 
 -(NSUInteger)hash
@@ -45,20 +76,15 @@
 
 -(BOOL)isEqual:(id)message
 {
-    if(message == self)
+    if (message == self)
     {
         return YES;
     }
-    if (message && [message isMemberOfClass:[self class]]){
+    if (message && [message isMemberOfClass:[self class]])
+    {
         return [[message id] isEqualToString:self.id];
     }
     return NO;
-}
-
-
--(NSString *)description
-{
-    return [NSString stringWithFormat:@"%@, you got a message with subject: %@. \n The message was: %@",self.recipient, self.subject, self.message];
 }
 
 

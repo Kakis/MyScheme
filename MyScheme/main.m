@@ -129,6 +129,14 @@ int main(int argc, const char * argv[])
                                                  classroom:@"Aulan"
                                                 assignment:@"write an app"];
         
+        Message *message2 = [[Message alloc] initWithTitle:@"message2"
+                                                   subject:@"ny sal"
+                                                    sender:@"Admin"
+                                                  receiver:@"Kristoffer"
+                                                      type:@"message"
+                                                   message:@"Vi ska vara i sal 3108 på fredag"
+                                                 isPrivate:YES];
+        
         Scheme *scheme = [[Scheme alloc] init];
         
         
@@ -156,6 +164,8 @@ int main(int argc, const char * argv[])
 //        [scheme addNewLesson:iOS_lesson3 adminPassword:@"admin"];
 //        [scheme addNewLesson:iOS_lesson4 adminPassword:@"admin"];
 //        [scheme addNewLesson:iOS_lesson5 adminPassword:@"admin"];
+        
+//        [scheme addNewMessage:message2 adminPassword:@"admin"];
         
         
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -199,7 +209,7 @@ int main(int argc, const char * argv[])
 //        [scheme saveLessonToDb:iOS_lesson4];
 //        [scheme saveLessonToDb:iOS_lesson5];
         
-        // Save Messages to couch.db
+//        [scheme saveMessage:message2 adminPassword:@"admin"];
         
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -214,18 +224,11 @@ int main(int argc, const char * argv[])
         // En elev ska kunna se* läsanvisningar för veckan
         
         
-//        // Hämta alla data för student Jens
-//        [scheme getStudent:jens onCompletion:^(NSArray *getStudent){
-//            for(id _id in getStudent) {
-//                NSLog(@"%@", [[NSString alloc] initWithData:_id
-//                                                   encoding:NSUTF8StringEncoding]);
-//                
-//            }
-//        }];
+
         
         
-//        // Hämta alla data för student Kristoffer
-//        [scheme getStudent:kristoffer onCompletion:^(NSArray *getStudent){
+//        // Hämta alla studenter
+//        [scheme getAllStudens:@"student" onCompletion:^(NSArray *getStudent){
 //            for(id _id in getStudent) {
 //                NSLog(@"%@", [[NSString alloc] initWithData:_id
 //                                                   encoding:NSUTF8StringEncoding]);
@@ -252,6 +255,19 @@ int main(int argc, const char * argv[])
 //
 //            }
 //        }];
+        
+        
+//        // Hämta schema för vecka 23 dag torsdag
+//        [scheme getScheduleForWeek:@"23"
+//                            andDay:@"thursday"
+//                      onCompletion:^(NSArray *getObject){
+//            for(id _id in getObject) {
+//                NSLog(@"%@", [[NSString alloc] initWithData:_id
+//                                                   encoding:NSUTF8StringEncoding]);
+//                
+//            }
+//        }];
+
         
         
 //        // Hämta läsanvisningar för vecka 21
@@ -286,7 +302,10 @@ int main(int argc, const char * argv[])
 
         
 //        // Hämta läsanvisningar för tisdagen vecka 22
-//        [scheme getAssignmentsForWeek:@"22" day:@"tuesday" onCompletion:^(NSArray *getObject){
+//        [scheme getAssignmentsForCourse:@"iOS"
+//                                   Week:@"22"
+//                                 andDay:@"tuesday"
+//                           onCompletion:^(NSArray *getObject){
 //            for(id _id in getObject) {
 //                NSLog(@"%@", [[NSString alloc] initWithData:_id
 //                                                   encoding:NSUTF8StringEncoding]);
@@ -305,7 +324,7 @@ int main(int argc, const char * argv[])
 //        }];
 
         
-//        // Hämta läsanvisningar för onsagen vecka 23
+//        // Hämta läsanvisningar för onsdagen vecka 23
 //        [scheme getAssignmentsForWeek:@"22" day:@"wednesday" onCompletion:^(NSArray *getObject){
 //            for(id _id in getObject) {
 //                NSLog(@"%@", [[NSString alloc] initWithData:_id
@@ -323,9 +342,23 @@ int main(int argc, const char * argv[])
 //                
 //            }
 //        }];
-
-
         
+        
+        
+//        // Hämta läsanvisningar ur lektionen kurs iOS, torsdagen vecka 23
+//        [scheme getAssignmentsForCourse:@"iOS"
+//                                   Week:@"22"
+//                                 andDay:@"thursday"
+//                           onCompletion:^(NSArray *getObject){
+//                               for(id _id in getObject) {
+//                                   NSLog(@"%@", [[NSString alloc] initWithData:_id
+//                                                                      encoding:NSUTF8StringEncoding]);
+//                                   
+//                               }
+//                           }];
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -337,11 +370,32 @@ int main(int argc, const char * argv[])
         
         ////// Fill the strings "andRev" below with the most recent rev-number that you get         ///////////
         ////// returned by the getStudent methods above, before you run the next commandlines!      ///////////
-
+        
+        
+//        // Hämta alla data för student Jens
+//        [scheme getStudent:jens onCompletion:^(NSArray *getStudent){
+//            for(id _id in getStudent) {
+//                NSLog(@"%@", [[NSString alloc] initWithData:_id
+//                                                   encoding:NSUTF8StringEncoding]);
+//
+//            }
+//        }];
+        
 //        [scheme updateStudent:jens
 //                       withID:@"7F010E1D-7A63-42E0-BB7C-F54A0AFEF2A8"
 //                       andRev:@""
 //                adminPassword:@"admin"];
+        
+/////////////////////////////////
+        
+//        // Hämta alla data för student Kristoffer
+//        [scheme getStudent:kristoffer onCompletion:^(NSArray *getStudent){
+//            for(id _id in getStudent) {
+//                NSLog(@"%@", [[NSString alloc] initWithData:_id
+//                                                   encoding:NSUTF8StringEncoding]);
+//                
+//            }
+//        }];
         
 //        [scheme updateStudent:kristoffer
 //                       withID:@"BD6D791E-C6B3-4897-8864-2F50B313BE00"

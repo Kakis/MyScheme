@@ -16,7 +16,6 @@
 #import "Message+Json.h"
 
 typedef void (^GetStudentResponce)(NSArray *getStudent);
-
 typedef void (^GetObjectResponce)(NSArray *getObject);
 
 @interface Scheme : NSObject
@@ -32,23 +31,44 @@ typedef void (^GetObjectResponce)(NSArray *getObject);
 -(void)saveLessonToDb:(Lesson *)lesson;
 
 -(void)getScheduleForWeek:(NSString *)week
-    onCompletion:(GetObjectResponce)getObjectResponce;
+             onCompletion:(GetObjectResponce)getObjectResponce;
 
 -(void)getScheduleForWeek:(NSString *)week
-                      day:(NSString *)day
+                   andDay:(NSString *)day
              onCompletion:(GetObjectResponce)getObjectResponce;
-
--(void)getAssignmentsForWeek:(NSString *)week
-             onCompletion:(GetObjectResponce)getObjectResponce;
-
--(void)getAssignmentsForWeek:(NSString *)week
-                         day:(NSString *)day
-                onCompletion:(GetObjectResponce)getObjectResponce;
 
 -(BOOL)updateLesson:(Lesson *)lesson
+             withId:(NSString *)lessonId
+             andRev:(NSString *)lessonRev
       adminPassword:(NSString *)password;
 
+#pragma mark - Managing assignments
+-(void)getAssignmentsForWeek:(NSString *)week
+                onCompletion:(GetObjectResponce)getObjectResponce;
+
+//-(void)getAssignmentsForToday:(NSArray *)keys
+//                  onCompletion:(GetObjectResponce)getObjectResponce;
+
+-(void)getAssignmentsForCourse:(NSString *)course
+                          Week:(NSString *)week
+                        andDay:(NSString *)day
+                  onCompletion:(GetObjectResponce)getObjectResponce;
+
 #pragma mark - Managing messages
+-(BOOL)addNewMessage:(Message *)message
+       adminPassword:(NSString *)adminpassword;
+
+-(BOOL)saveMessage:(Message*)message
+     adminPassword:(NSString *)adminpassword;
+
+-(BOOL)getMessageWithId:(NSString *)dataId
+           onCompletion:(GetObjectResponce)getObjectResponce;
+
+-(BOOL)updateMessage:(Message*)message
+              withId:(NSString *)messageId
+              andRev:(NSString *)revNumber
+       adminPassword:(NSString *)adminpassword;
+
 -(BOOL)sendPrivateMessage:(Message *)message
                 toStudent:(Student *)student
             adminPassword:(NSString *)password;
@@ -67,8 +87,11 @@ typedef void (^GetObjectResponce)(NSArray *getObject);
 -(void)getStudent:(Student *)studentName
      onCompletion:(GetStudentResponce)getStudentResponce;
 
+-(void)getAllStudents:(NSString *)typeStudent
+         onCompletion:(GetStudentResponce)getStudentResponce;
+
 -(BOOL)updateStudent:(Student *)student
-              withID:(NSString *)studentId
+              withId:(NSString *)studentId
               andRev:(NSString *)studentRev
        adminPassword:(NSString *)password;
 

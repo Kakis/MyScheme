@@ -2,7 +2,7 @@
 //  Message+Json.h
 //  MyScheme
 //
-//  Created by Jens Hagfeldt on 2013-08-04.
+//  Created by Jens Hagfeldt on 2013-08-23.
 //  Copyright (c) 2013 Jens Hagfeldt. All rights reserved.
 //
 
@@ -12,6 +12,5 @@
 @interface Message (Json) <JsonFormat>
 
 -(id)jsonValue;
-
 
 @end

@@ -16,20 +16,34 @@ static NSString * const wednesdayKey = @"wednesday_key";
 static NSString * const thursdayKey = @"thursday_key";
 static NSString * const fridayKey = @"friday_key";
 
+// Key for sorting all messages
+static NSString * const allMessagesKey = @"allmessages_key";
+
 // Keys for sorting students in two courses
 static NSString * const objCKey = @"objC_key";
 static NSString * const iOSKey = @"iOS_key";
 
-// Views for sorting schedule
-static NSString * const viewScheduleForWeek = @"http://kakis.iriscouch.com/schedule_lessons/_design/schedule_week/_view/schedule_week?key=";
-static NSString * const viewMondaysLessons = @"http://kakis.iriscouch.com/schedule_lessons/_design/view_mondays/_view/monday_lessons?key=";
-static NSString * const viewTuesdaysLessons = @"http://kakis.iriscouch.com/schedule_lessons/_design/view_tuesdays/_view/tuesday_lessons?key=";
-static NSString * const viewWednesdaysLessons = @"http://kakis.iriscouch.com/schedule_lessons/_design/view_wednesdays/_view/wednesday_lessons?key";
-static NSString * const viewThursdaysLessons = @"http://kakis.iriscouch.com/schedule_lessons/_design/view_thurdays/_view/thursday_lessons?key=";
-static NSString * const viewFridaysLessons = @"http://kakis.iriscouch.com/schedule_lessons/_design/view_fridays/_view/friday_lessons?key=";
+// Views for this weeks schedule
+static NSString * const viewScheduleForWeek = @"http://kakis.iriscouch.com/schedule_lessons/_design/week_schedule/_view/schedule_for_week?key=";
 
-// Views for sorting assignments
-static NSString * const viewAssignmentsForWeek = @"http://kakis.iriscouch.com/schedule_lessons/_design/assignments_week/_view/assignments_week?key=";
+// View for schedule this day
+static NSString * const viewTodaysSchedule = @"http://kakis.iriscouch.com/schedule_lessons/_design/todays_schedule/_view/schedule_for_today?key=";
+
+// Views for this weeks assignments
+static NSString * const viewAssignmentsForWeek = @"http://kakis.iriscouch.com/schedule_lessons/_design/week_assignments/_view/assignments_for_week?key=";
+
+// Views for assignments this day
+static NSString * const viewTodaysAssignments = @"http://kakis.iriscouch.com/schedule_lessons/_design/todays_assignments/_view/assignments_for_today";
+
+// Views for sorting students
+static NSString * const viewStudent = @"http://kakis.iriscouch.com/schedule_students/_design/view_student/_view/get_student?key=";
+
+typedef enum
+{
+    mondayLessons, tuesdayLessons, wednesdayLessons, thursdaylessons, fridayLessons
+    
+} viewLessonForDay;
+
 
 @implementation Scheme
 {
@@ -173,17 +187,79 @@ static NSString * const viewAssignmentsForWeek = @"http://kakis.iriscouch.com/sc
 
 
 -(void)getScheduleForWeek:(NSString *)week
-                      day:(NSString *)day
+                   andDay:(NSString *)day
              onCompletion:(GetObjectResponce)getObjectResponce
 {
-    // Bygg ut här...
+    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:viewTodaysSchedule];
+    [strUrl appendString:@"%22"];
+    [strUrl appendString:week];
+    [strUrl appendString:@"%22"];
+    
+    NSURL *url = [NSURL URLWithString:strUrl];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               
+                               NSArray *foundLessons = @[data];
+
+//                               for (int i = 0; i < [foundLessons count]; i++) {
+//                                   if ([[[foundLessons objectAtIndex:i] valueForKey:@"%5B%22day%22%5D"] isEqualToString:day]) {
+//                                       NSArray *listItems = [[foundLessons objectAtIndex: i] valueForKeyPath:@"%5B%22day%22%5D"];
+//                                       getObjectResponce(listItems);
+//                                   }
+//                               }
+                               getObjectResponce(foundLessons);
+                        }];
+    
+    NSRunLoop *loop = [NSRunLoop currentRunLoop];
+    [loop run];
 }
 
 
 -(BOOL)updateLesson:(Lesson *)lesson
+             withId:(NSString *)lessonId
+             andRev:(NSString *)lessonRev
       adminPassword:(NSString *)password
 {
-    // Bygg ut här...
+    if([password isEqualToString:@"admin"]){
+        // Kör serialisering av vår student till JSON-format
+        NSDictionary *lessonAsJson = [self serializeObjectToJson:lesson];
+        
+        // Skapar ett NSData-objekt som håller i vår student, JSON-formaterad
+        NSData *lessonAsData = [NSJSONSerialization dataWithJSONObject:lessonAsJson
+                                                                options:NSJSONWritingPrettyPrinted
+                                                                  error:NULL];
+        
+        // Vi skapar en URL-pekare och tilldelar den en sträng med url'en till min databas schedule på iriscouch,
+        // matchat mot den student som vi vill uppdatera genom att ange id- och rev-nummer
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://kakis.iriscouch.com/schedule_lessons/%@?rev=%@",lessonId, lessonRev]];
+        
+        // Vi initierar en request med den url vi angivit
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+        
+        // Vi sätter HTTP metoden till PUT
+        [request setHTTPMethod:@"PUT"];
+        
+        // Lägger min student i HTTP bodyn
+        [request setHTTPBody:lessonAsData];
+        
+        // Ställer i HTTP headern in att jag kommer att skicka värden av typen application/json
+        // [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        
+        // Skapar min NSURLConnection och kör igång den
+        NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:nil];
+        [connection start];
+        
+        NSRunLoop *loop = [NSRunLoop currentRunLoop];
+        [loop run];
+        
+        return YES;
+    }
     return YES;
 }
 
@@ -227,22 +303,34 @@ static NSString * const viewAssignmentsForWeek = @"http://kakis.iriscouch.com/sc
 }
 
 
-
--(void)getAssignmentsForWeek:(NSString *)week
-                         day:(NSString *)day
-                onCompletion:(GetObjectResponce)getObjectResponce
+-(void)getAssignmentsForCourse:(NSString *)course
+                          Week:(NSString *)week
+                        andDay:(NSString *)day
+                  onCompletion:(GetObjectResponce)getObjectResponce
 {
-    // Här ska man kunna välja en annan dag än fredag också
-    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:viewFridaysLessons];
-    
-    [strUrl appendString:@"%22"];
-    [strUrl appendString:week];
-    [strUrl appendString:@"%22"];
+    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:viewTodaysSchedule];
     
     NSURL *url = [NSURL URLWithString:strUrl];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     
+    NSMutableString *keyString = [[NSMutableString alloc]init];
+    [keyString appendString:@"%22lesson%22,%22"];
+    [keyString appendString:course];
+    [keyString appendString:@"%22,%22"];
+    [keyString appendString:week];
+    [keyString appendString:@"%22,%22"];
+    [keyString appendString:day];
+    [keyString appendString:@"%22"];
+
+    NSArray *keys = @[keyString];
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:@{@"keys": keys}
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:NULL];
+    
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPBody:jsonData];
+    [request setHTTPMethod:@"POST"];
     
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:queue
@@ -256,7 +344,128 @@ static NSString * const viewAssignmentsForWeek = @"http://kakis.iriscouch.com/sc
 }
 
 
+//-(void)getAssignmentsForCourse:(NSString *)course
+//                          Week:(NSString *)week
+//                        andDay:(NSString *)day
+//                  onCompletion:(GetObjectResponce)getObjectResponce
+//{
+//    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:viewTodaysSchedule];
+//    
+//    if ([day isEqualToString:@"monday"]) {
+//        strUrl = [[NSMutableString alloc]initWithString:viewMondaysLessons];
+//    } else if ([day isEqualToString:@"tuesday"]){
+//        strUrl = [[NSMutableString alloc]initWithString:viewTuesdaysLessons];
+//    } else if ([day isEqualToString:@"wedneday"]){
+//        strUrl = [[NSMutableString alloc]initWithString:viewWednesdaysLessons];
+//    } else if ([day isEqualToString:@"thursday"]){
+//        strUrl = [[NSMutableString alloc]initWithString:viewThursdaysLessons];
+//    } else {
+//        // day isEqualToString:@"friday" 
+//        strUrl = [[NSMutableString alloc]initWithString:viewFridaysLessons];
+//    }
+//    
+//    [strUrl appendString:@"%5B%22"];
+//    [strUrl appendString:course];
+//    [strUrl appendString:@"%22,%22"];
+//    [strUrl appendString:week];
+//    [strUrl appendString:@"%22,%22"];
+//    [strUrl appendString:day];
+//    [strUrl appendString:@"%22%5D"];
+//    
+//    
+//    
+//    NSURL *url = [NSURL URLWithString:strUrl];
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+//    
+//    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//    
+//    [NSURLConnection sendAsynchronousRequest:request
+//                                       queue:queue
+//                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+//                               NSArray *foundLesson = @[data];
+//                               getObjectResponce(foundLesson);
+//                           }];
+//    
+//    NSRunLoop *loop = [NSRunLoop currentRunLoop];
+//    [loop run];
+//}
+
+
 #pragma mark - Managing messages
+
+-(BOOL)addNewMessage:(Message *)message
+       adminPassword:(NSString *)adminpassword;
+{
+    if (messages[message.id]) {
+        return NO;
+    } else{
+        [messages[allMessagesKey] addObject:message];
+        return YES;
+        
+    }
+}
+
+
+-(BOOL)saveMessage:(Message *)message
+     adminPassword:(NSString *)adminpassword
+{
+    if ([adminpassword isEqualToString:@"admin"])
+    {
+        if (!([message.title isEqualToString:@""]
+              ||
+              [message.subject isEqualToString:@""]
+              ||
+              [message.sender isEqualToString:@""]
+              ||
+              [message.receiver isEqualToString:@""]
+              ||
+              [message.type isEqualToString:@""]
+              ||
+              [message.message isEqualToString:@""]))
+        {
+            
+            NSDictionary *messageAsJson = [self serializeObjectToJson:message];
+            NSData *messageAsData = [NSJSONSerialization dataWithJSONObject:messageAsJson
+                                                                    options:NSJSONWritingPrettyPrinted
+                                                                      error:NULL];
+            
+            //JENS Lägg in din länk här tack :)
+            NSURL *url = [NSURL URLWithString:@"http://kakis.iriscouch.com/schedule_messages"];
+            
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[url standardizedURL]];
+            
+            [request setHTTPMethod:@"POST"];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+            [request setHTTPBody:messageAsData];
+            
+            NSURLConnection *connection = [NSURLConnection connectionWithRequest:request
+                                                                        delegate:nil];
+            [connection start];
+            
+            NSRunLoop *loop = [NSRunLoop currentRunLoop];
+            [loop run];
+            
+            return YES;
+        }
+    }
+    return NO;
+}
+
+-(BOOL)getMessageWithId:(NSString *)dataId
+           onCompletion:(GetObjectResponce)getObjectResponce
+{
+    return YES;
+}
+
+
+-(BOOL)updateMessage:(Message *)message
+              withId:(NSString *)messageId
+              andRev:(NSString *)revNumber
+       adminPassword:(NSString *)adminpassword
+{
+    return YES;
+}
+
 
 -(BOOL)sendPrivateMessage:(Message *)message
                 toStudent:(Student *)student
@@ -291,7 +500,6 @@ static NSString * const viewAssignmentsForWeek = @"http://kakis.iriscouch.com/sc
     }
     return YES;
 }
-
 
 -(void)saveStudentToDb:(Student *)student
 {
@@ -333,7 +541,7 @@ static NSString * const viewAssignmentsForWeek = @"http://kakis.iriscouch.com/sc
 {
     // Vi skapar en URL-pekare och tilldelar den en sträng med url'en till min databas schedule på iriscouch,
     // matchat mot en students namn
-    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:@"http://kakis.iriscouch.com/schedule_students/_design/student/_view/get_student?key="];
+    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:@"http://kakis.iriscouch.com/schedule_students/_design/view_student/_view/get_student?key="];
     [strUrl appendString:@"%22"];
     [strUrl appendString:studentName.firstName ];
     [strUrl appendString:@"%22"];
@@ -365,9 +573,16 @@ static NSString * const viewAssignmentsForWeek = @"http://kakis.iriscouch.com/sc
 }
 
 
+-(void)getAllStudents:(NSString *)typeStudent
+         onCompletion:(GetStudentResponce)getStudentResponce
+{
+    // Koden här tack
+}
+
+
 
 -(BOOL)updateStudent:(Student *)student
-              withID:(NSString *)studentId
+              withId:(NSString *)studentId
               andRev:(NSString *)studentRev
        adminPassword:(NSString *)password
 {
@@ -427,6 +642,29 @@ static NSString * const viewAssignmentsForWeek = @"http://kakis.iriscouch.com/sc
     return result;
 }
 
+//
+//#pragma mark - Helper methods
+//
+//-(void)getItemsForKeys:(NSArray *)keys
+//                inView:(NSString *)view
+//          onCompletion:(callbackWithDictionary)callback
+//{
+//    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:viewTodaysSchedule];
+//    NSMutableURLRequest *request = [self requestWithUrl:strUrl];
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:@{@"keys": keys} options:NSJSONWritingPrettyPrinted error:NULL];
+//    
+//    [request setHTTPBody:jsonData];
+//    [request setHTTPMethod:@"POST"];
+//    
+//    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *responce, NSData *data, NSError *error) {
+//        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+//        NSMutableArray *items = [[[NSMutableArray alloc] initWithCapacity:[result[@"rows"]count]];
+//        for (NSDictionary *d in result[@"rows"]) {
+//            [items addObject:d[@"value"]];
+//        }
+//        callback(items);
+//    }];
+//}
 
 
 @end
