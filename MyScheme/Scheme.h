@@ -24,17 +24,19 @@ typedef void (^GetObjectResponce)(NSArray *getObject);
             students:(NSArray *)studentsToAdd
                 week:(int *)week;
 
-#pragma mark - Managing lessons
+#pragma mark - Managing lessons and schedule
 -(BOOL)addNewLesson:(Lesson *)lesson;
 
 -(void)saveLessonToDb:(Lesson *)lesson;
 
--(void)getScheduleForWeek:(NSString *)week
-             onCompletion:(GetObjectResponce)getObjectResponce;
+-(void)getScheduleForCourse:(NSString *)course
+                       Week:(NSString *)week
+               onCompletion:(GetObjectResponce)getObjectResponce;
 
--(void)getScheduleForWeek:(NSString *)week
-                   andDay:(NSString *)day
-             onCompletion:(GetObjectResponce)getObjectResponce;
+-(void)getScheduleForCourse:(NSString *)course
+                       Week:(NSString *)week
+                     andDay:(NSString *)day
+               onCompletion:(GetObjectResponce)getObjectResponce;
 
 -(BOOL)updateLesson:(Lesson *)lesson
              withId:(NSString *)lessonId
@@ -57,9 +59,6 @@ typedef void (^GetObjectResponce)(NSArray *getObject);
 
 -(BOOL)saveMessage:(Message*)message
      adminPassword:(NSString *)adminpassword;
-
--(BOOL)getMessageWithId:(NSString *)dataId
-           onCompletion:(GetObjectResponce)getObjectResponce;
 
 -(BOOL)getPrivateMessagesFor:(Student *)student
                 onCompletion:(GetObjectResponce)getObjectResponce;

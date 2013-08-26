@@ -256,28 +256,36 @@ int main(int argc, const char * argv[])
 ///////// En elev ska kunna se* sitt schema för veckan ////////////////////////////////////////////////////////
 
 
-//        // Hämta schema för vecka 21
-//        [scheme getScheduleForWeek:@"21" onCompletion:^(NSArray *getObject){
-//            for(id _id in getObject) {
-//                NSLog(@"%@", [[NSString alloc] initWithData:_id
-//                                                   encoding:NSUTF8StringEncoding]);
-//                
-//            }
-//        }];
+//        // Hämta schema för kurs Objective C vecka 21
+//        [scheme getScheduleForCourse:@"Objective C"
+//                                Week:@"21"
+//                        onCompletion:^(NSArray *getObject){
+//                            for(id _id in getObject) {
+//                                NSLog(@"%@", [[NSString alloc] initWithData:_id
+//                                                                   encoding:NSUTF8StringEncoding]);
+//                                
+//                            }
+//                        }];
+
         
 
-//        // Hämta schema för vecka 22
-//        [scheme getScheduleForWeek:@"22" onCompletion:^(NSArray *getObject){
-//            for(id _id in getObject) {
-//                NSLog(@"%@", [[NSString alloc] initWithData:_id
-//                                                   encoding:NSUTF8StringEncoding]);
-//
-//            }
-//        }];
+//        // Hämta schema för kurs iOS vecka 22
+//        [scheme getScheduleForCourse:@"iOS"
+//                                Week:@"22"
+//                        onCompletion:^(NSArray *getObject){
+//                            for(id _id in getObject) {
+//                                NSLog(@"%@", [[NSString alloc] initWithData:_id
+//                                                                   encoding:NSUTF8StringEncoding]);
+//                                
+//                            }
+//                        }];
+
         
         
 //        // Hämta schema för vecka 23
-//        [scheme getScheduleForWeek:@"23" onCompletion:^(NSArray *getObject){
+//        [scheme getScheduleForCourse:@"Objective C"
+//                                Week:@"23"
+//                        onCompletion:^(NSArray *getObject){
 //            for(id _id in getObject) {
 //                NSLog(@"%@", [[NSString alloc] initWithData:_id
 //                                                   encoding:NSUTF8StringEncoding]);
@@ -294,16 +302,16 @@ int main(int argc, const char * argv[])
 ///////// En elev ska kunna se* sitt schema för dagen /////////////////////////////////////////////////////////
 
         
-//        // Hämta schema för vecka 23 dag torsdag
-//        [scheme getScheduleForWeek:@"23"
-//                            andDay:@"thursday"
-//                      onCompletion:^(NSArray *getObject){
-//            for(id _id in getObject) {
-//                NSLog(@"%@", [[NSString alloc] initWithData:_id
-//                                                   encoding:NSUTF8StringEncoding]);
-//                
-//            }
-//        }];
+//        // Hämta schema för kurs iOS måndag vecka 23
+//        [scheme getScheduleForCourse:@"iOS"
+//                                Week:@"22"
+//                              andDay:@"monday" onCompletion:^(NSArray *getObject){
+//                                  for(id _id in getObject) {
+//                                      NSLog(@"%@", [[NSString alloc] initWithData:_id
+//                                                                         encoding:NSUTF8StringEncoding]);
+//                                      
+//                                  }
+//                              }];
         
         
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -313,15 +321,15 @@ int main(int argc, const char * argv[])
 ////////// En elev ska kunna se* läsanvisningar för veckan ////////////////////////////////////////////////////
 
         
-        //        [scheme getAssignmentsForCourse:@"Objective C"
-        //                                   Week:@"21"
-        //                           onCompletion:^(NSArray *getObject){
-        //            for(id _id in getObject) {
-        //                NSLog(@"%@", [[NSString alloc] initWithData:_id
-        //                                                   encoding:NSUTF8StringEncoding]);
-        //                
-        //            }
-        //        }];
+//        [scheme getAssignmentsForCourse:@"Objective C"
+//                                   Week:@"21"
+//                           onCompletion:^(NSArray *getObject){
+//            for(id _id in getObject) {
+//                NSLog(@"%@", [[NSString alloc] initWithData:_id
+//                                                   encoding:NSUTF8StringEncoding]);
+//                
+//            }
+//        }];
 
         
 ////////// En elev ska kunna se* läsanvisningar för dagen ////////////////////////////////////////////////////
@@ -330,7 +338,7 @@ int main(int argc, const char * argv[])
 //        // Hämta iOS-kursens läsanvisningar för tisdagen vecka 22
 //        [scheme getAssignmentsForCourse:@"iOS"
 //                                   Week:@"22"
-//                                 andDay:@"saturday"
+//                                 andDay:@"friday"
 //                           onCompletion:^(NSArray *getObject){
 //                               for(id _id in getObject) {
 //                                   NSLog(@"%@", [[NSString alloc] initWithData:_id
@@ -408,26 +416,7 @@ int main(int argc, const char * argv[])
 //                }];
 
         
-        
-///////////////////////////////////////// Loggs for objects in Schedule ///////////////////////////////////////
-//
-//        NSLog(@"%@", objC_lesson1);
-//        puts ("");
-//        NSLog(@"%@", objC_lesson2);
-//        puts ("");
-//        NSLog(@"%@", objC_lesson3);
-//        puts ("");
-//        NSLog(@"%@", iOS_lesson1);
-//        puts ("");
-//        NSLog(@"%@", iOS_lesson2);
-//        puts ("");
-//        NSLog(@"%@", iOS_lesson3);
-//        puts ("");
-//        NSLog(@"%@", jens);
-//        puts ("");
-//        NSLog(@"%@", kristoffer);
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         
     }
  
