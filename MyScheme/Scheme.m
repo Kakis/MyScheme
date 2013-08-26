@@ -23,26 +23,32 @@ static NSString * const allMessagesKey = @"allmessages_key";
 static NSString * const objCKey = @"objC_key";
 static NSString * const iOSKey = @"iOS_key";
 
-// Views for this weeks schedule
-static NSString * const viewScheduleForWeek = @"http://kakis.iriscouch.com/schedule_lessons/_design/week_schedule/_view/schedule_for_week?key=";
+// URL's for all databases
+static NSString * const urlForLessons = @"http://kakis.iriscouch.com/schedule_lessons/_design/";
+static NSString * const urlForMessages = @"http://kakis.iriscouch.com/schedule_mesages/";
+static NSString * const urlForStudents = @"http://kakis.iriscouch.com/schedule_students/";
 
-// View for schedule this day
+// Views for sorting schedule
+static NSString * const viewScheduleForWeek = @"http://kakis.iriscouch.com/schedule_lessons/_design/week_schedule/_view/schedule_for_week?key=";
 static NSString * const viewTodaysSchedule = @"http://kakis.iriscouch.com/schedule_lessons/_design/todays_schedule/_view/schedule_for_today?key=";
 
-// Views for this weeks assignments
-static NSString * const viewAssignmentsForWeek = @"http://kakis.iriscouch.com/schedule_lessons/_design/week_assignments/_view/assignments_for_week?key=";
+// Views for sorting assignments
+static NSString * const viewIOSAssignmentsForWeek = @"this_weeks_ios_assignments/_view/ios_assignments_for_this_week?key=";
+static NSString * const viewObjectiveCAssignmentsForWeek = @"this_weeks_objective_c_assignments/_view/objective_c_assignments_for_this_week?key=";
+static NSString * const viewTodaysIOSAssignments = @"todays_ios_assignments/_view/ios_assignments_for_today?key=";
+static NSString * const viewTodaysObjectiveCAssignments = @"todays_objective_c_assignments/_view/objective_c_assignments_for_today?key=";
+static NSString * const viewAllTodaysAssignments = @"http://kakis.iriscouch.com/schedule_lessons/_design/all_todays_assignments/_view/all_assignments_for_today";
 
-// Views for assignments this day
-static NSString * const viewTodaysAssignments = @"http://kakis.iriscouch.com/schedule_lessons/_design/todays_assignments/_view/assignments_for_today";
+// Views for sorting messages
+static NSString * const viewPrivateMessages = @"http://kakis.iriscouch.com/schedule_messages/_design/private_message/_view/messages_for?key=";
+static NSString * const viewIosCourseMessages = @"_view/ios_course_message";
+static NSString * const viewObjectiveCCourseMessages = @"_view/objective_c_course_message";
 
 // Views for sorting students
 static NSString * const viewStudent = @"http://kakis.iriscouch.com/schedule_students/_design/view_student/_view/get_student?key=";
-
-typedef enum
-{
-    mondayLessons, tuesdayLessons, wednesdayLessons, thursdaylessons, fridayLessons
-    
-} viewLessonForDay;
+static NSString * const viewAllStudents = @"http://kakis.iriscouch.com/schedule_students/_design/all_students/_view/in_all_courses";
+static NSString * const viewAllIosStudents = @"http://kakis.iriscouch.com/schedule_students/_design/all_ios_students/_view/in_ios_course?key";
+static NSString * const viewAllObjectiveCStudents = @"http://kakis.iriscouch.com/schedule_students/_design/all_objective_c_students/_view/in_objective_c_course?key";
 
 
 @implementation Scheme
@@ -266,36 +272,37 @@ typedef enum
 
 #pragma mark - Managing Assignments
 
--(void)getAssignmentsForWeek:(NSString *)week
-             onCompletion:(GetObjectResponce)getObjectResponce
+-(void)getAssignmentsForCourse:(NSString *)course
+                          Week:(NSString *)week
+                  onCompletion:(GetObjectResponce)getObjectResponce
 {
-    // Vi skapar en URL-pekare och tilldelar den en sträng med url'en till min databas schedule på iriscouch,
-    // matchat mot enlektionss namn
-    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:viewAssignmentsForWeek];
-    [strUrl appendString:@"%22"];
-    [strUrl appendString:week];
-    [strUrl appendString:@"%22"];
+    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:urlForLessons];
+    
+    if ([course isEqualToString:@"iOS"])
+    {
+        [strUrl appendString:viewIOSAssignmentsForWeek];
+        [strUrl appendString:@"%22"];
+        [strUrl appendString:week];
+        [strUrl appendString:@"%22"];
+    }
+    else if ([course isEqualToString:@"Objective C"])
+    {
+        [strUrl appendString:viewObjectiveCAssignmentsForWeek];
+        [strUrl appendString:@"%22"];
+        [strUrl appendString:week];
+        [strUrl appendString:@"%22"];
+    }
     
     NSURL *url = [NSURL URLWithString:strUrl];
-    
-    // Vi skapar en NSMutableURLRequest, allokerar minnet och initerar den med url'en vi nyss skapade
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     
-    // Vi säger att vi vill få tillbaka json-värden med vår HTTP-förfrågan
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
-    // Vi vill lägga en asynhron NSURLconection på kön och köra vårt block (^GetStudentResponce) som vi definierat i h-filen
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:queue
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               
-                               // Vi serialiserar de data vi får tillbaka från json till ett student-objekt
-                               // och sätter pekaren foundStudent att peka mot detta.
-                               NSArray *foundLesson = @[data];
-                               
-                               // Vi kör det block vi skickade som argument.
-                               // Och skickar det vi får tillbaka (callback).
-                               getObjectResponce(foundLesson);
+                               NSArray *foundAssignments = @[data];
+                               getObjectResponce(foundAssignments);
                            }];
     
     NSRunLoop *loop = [NSRunLoop currentRunLoop];
@@ -308,35 +315,33 @@ typedef enum
                         andDay:(NSString *)day
                   onCompletion:(GetObjectResponce)getObjectResponce
 {
-    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:viewTodaysSchedule];
+    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:urlForLessons];
     
+    if ([course isEqualToString:@"iOS"])
+    {
+        [strUrl appendString:viewTodaysIOSAssignments];
+        [strUrl appendString:@"%22"];
+        [strUrl appendString:day];
+        [strUrl appendString:@"%22"];
+    }
+    else if ([course isEqualToString:@"Objective C"])
+    {
+        [strUrl appendString:viewTodaysObjectiveCAssignments];
+        [strUrl appendString:@"%22"];
+        [strUrl appendString:day];
+        [strUrl appendString:@"%22"];
+    }
+
     NSURL *url = [NSURL URLWithString:strUrl];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     
-    NSMutableString *keyString = [[NSMutableString alloc]init];
-    [keyString appendString:@"%22lesson%22,%22"];
-    [keyString appendString:course];
-    [keyString appendString:@"%22,%22"];
-    [keyString appendString:week];
-    [keyString appendString:@"%22,%22"];
-    [keyString appendString:day];
-    [keyString appendString:@"%22"];
-
-    NSArray *keys = @[keyString];
-    
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:@{@"keys": keys}
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:NULL];
-    
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setHTTPBody:jsonData];
-    [request setHTTPMethod:@"POST"];
     
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:queue
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               NSArray *foundLesson = @[data];
-                               getObjectResponce(foundLesson);
+                               NSArray *foundAssignments = @[data];
+                               getObjectResponce(foundAssignments);
                            }];
     
     NSRunLoop *loop = [NSRunLoop currentRunLoop];
@@ -344,57 +349,9 @@ typedef enum
 }
 
 
-//-(void)getAssignmentsForCourse:(NSString *)course
-//                          Week:(NSString *)week
-//                        andDay:(NSString *)day
-//                  onCompletion:(GetObjectResponce)getObjectResponce
-//{
-//    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:viewTodaysSchedule];
-//    
-//    if ([day isEqualToString:@"monday"]) {
-//        strUrl = [[NSMutableString alloc]initWithString:viewMondaysLessons];
-//    } else if ([day isEqualToString:@"tuesday"]){
-//        strUrl = [[NSMutableString alloc]initWithString:viewTuesdaysLessons];
-//    } else if ([day isEqualToString:@"wedneday"]){
-//        strUrl = [[NSMutableString alloc]initWithString:viewWednesdaysLessons];
-//    } else if ([day isEqualToString:@"thursday"]){
-//        strUrl = [[NSMutableString alloc]initWithString:viewThursdaysLessons];
-//    } else {
-//        // day isEqualToString:@"friday" 
-//        strUrl = [[NSMutableString alloc]initWithString:viewFridaysLessons];
-//    }
-//    
-//    [strUrl appendString:@"%5B%22"];
-//    [strUrl appendString:course];
-//    [strUrl appendString:@"%22,%22"];
-//    [strUrl appendString:week];
-//    [strUrl appendString:@"%22,%22"];
-//    [strUrl appendString:day];
-//    [strUrl appendString:@"%22%5D"];
-//    
-//    
-//    
-//    NSURL *url = [NSURL URLWithString:strUrl];
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-//    
-//    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-//    
-//    [NSURLConnection sendAsynchronousRequest:request
-//                                       queue:queue
-//                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-//                               NSArray *foundLesson = @[data];
-//                               getObjectResponce(foundLesson);
-//                           }];
-//    
-//    NSRunLoop *loop = [NSRunLoop currentRunLoop];
-//    [loop run];
-//}
-
-
 #pragma mark - Managing messages
 
--(BOOL)addNewMessage:(Message *)message
-       adminPassword:(NSString *)adminpassword;
+-(BOOL)addNewMessage:(Message *)message;
 {
     if (messages[message.id]) {
         return NO;
@@ -404,7 +361,6 @@ typedef enum
         
     }
 }
-
 
 -(BOOL)saveMessage:(Message *)message
      adminPassword:(NSString *)adminpassword
@@ -429,7 +385,6 @@ typedef enum
                                                                     options:NSJSONWritingPrettyPrinted
                                                                       error:NULL];
             
-            //JENS Lägg in din länk här tack :)
             NSURL *url = [NSURL URLWithString:@"http://kakis.iriscouch.com/schedule_messages"];
             
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[url standardizedURL]];
@@ -457,28 +412,90 @@ typedef enum
     return YES;
 }
 
+-(BOOL)getPrivateMessagesFor:(Student *)student
+               onCompletion:(GetObjectResponce)getObjectResponce
+{
+    // Vi skapar en URL-pekare och tilldelar den en sträng med url'en till min databas schedule på iriscouch,
+    // matchat mot enlektionss namn
+    
+    NSString *name = student.firstName;
+    
+    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:viewPrivateMessages];
+    [strUrl appendString:@"%22"];
+    [strUrl appendString:name];
+    [strUrl appendString:@"%22"];
+    
+    NSURL *url = [NSURL URLWithString:strUrl];
+    
+    // Vi skapar en NSMutableURLRequest, allokerar minnet och initerar den med url'en vi nyss skapade
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    
+    // Vi säger att vi vill få tillbaka json-värden med vår HTTP-förfrågan
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    // Vi vill lägga en asynhron NSURLconection på kön och köra vårt block (^GetStudentResponce) som vi definierat i h-filen
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               
+                               // Vi serialiserar de data vi får tillbaka från json till ett student-objekt
+                               // och sätter pekaren foundStudent att peka mot detta.
+                               NSArray *foundMessages = @[data];
+                               
+                               // Vi kör det block vi skickade som argument.
+                               // Och skickar det vi får tillbaka (callback).
+                               getObjectResponce(foundMessages);
+                           }];
+    
+    NSRunLoop *loop = [NSRunLoop currentRunLoop];
+    [loop run];
+    
+    return YES;
+}
+
+-(BOOL)getMessagesForCourse:(NSString *)course
+               onCompletion:(GetObjectResponce)getObjectResponce
+{
+    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:@"http://kakis.iriscouch.com/schedule_messages/_design/course_message/"];
+    
+    if ([course isEqualToString:@"iOS"]) {
+        [strUrl appendString:viewIosCourseMessages];
+    } else {
+        [strUrl appendString:viewObjectiveCCourseMessages];
+    }
+    
+    NSURL *url = [NSURL URLWithString:strUrl];
+    
+    // Vi skapar en NSMutableURLRequest, allokerar minnet och initerar den med url'en vi nyss skapade
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    
+    // Vi säger att vi vill få tillbaka json-värden med vår HTTP-förfrågan
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    // Vi vill lägga en asynhron NSURLconection på kön och köra vårt block (^GetStudentResponce) som vi definierat i h-filen
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               
+                               // Vi serialiserar de data vi får tillbaka från json till ett student-objekt
+                               // och sätter pekaren foundStudent att peka mot detta.
+                               NSArray *foundMessages = @[data];
+                               
+                               // Vi kör det block vi skickade som argument.
+                               // Och skickar det vi får tillbaka (callback).
+                               getObjectResponce(foundMessages);
+                           }];
+    
+    NSRunLoop *loop = [NSRunLoop currentRunLoop];
+    [loop run];
+    return YES;
+}
+
 
 -(BOOL)updateMessage:(Message *)message
               withId:(NSString *)messageId
               andRev:(NSString *)revNumber
        adminPassword:(NSString *)adminpassword
-{
-    return YES;
-}
-
-
--(BOOL)sendPrivateMessage:(Message *)message
-                toStudent:(Student *)student
-            adminPassword:(NSString *)password
-{
-    return YES;
-}
-
-
--(BOOL)sendCollectiveMessage:(Message *)message
-          toStudentsInCourse:(NSString *)course
-                 withSubject:(NSString *)subject
-               adminPassword:(Admin *)admin
 {
     return YES;
 }
@@ -541,7 +558,7 @@ typedef enum
 {
     // Vi skapar en URL-pekare och tilldelar den en sträng med url'en till min databas schedule på iriscouch,
     // matchat mot en students namn
-    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:@"http://kakis.iriscouch.com/schedule_students/_design/view_student/_view/get_student?key="];
+    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:viewStudent];
     [strUrl appendString:@"%22"];
     [strUrl appendString:studentName.firstName ];
     [strUrl appendString:@"%22"];
@@ -576,9 +593,35 @@ typedef enum
 -(void)getAllStudents:(NSString *)typeStudent
          onCompletion:(GetStudentResponce)getStudentResponce
 {
-    // Koden här tack
+    // Vi skapar en URL-pekare och tilldelar den en sträng med url'en till min databas schedule på iriscouch,
+    // matchat mot en students namn
+    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:viewAllStudents];
+    
+    NSURL *url = [NSURL URLWithString:strUrl];
+    
+    // Vi skapar en NSMutableURLRequest, allokerar minnet och initerar den med url'en vi nyss skapade
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    
+    // Vi säger att vi vill få tillbaka json-värden med vår HTTP-förfrågan
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    // Vi vill lägga en asynhron NSURLconection på kön och köra vårt block (^GetStudentResponce) som vi definierat i h-filen
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               
+                               // Vi serialiserar de data vi får tillbaka från json till ett student-objekt
+                               // och sätter pekaren foundStudent att peka mot detta.
+                               NSArray *foundStudent = @[data];
+                               
+                               // Vi kör det block vi skickade som argument.
+                               // Och skickar det vi får tillbaka (callback).
+                               getStudentResponce(foundStudent);
+                           }];
+    
+    NSRunLoop *loop = [NSRunLoop currentRunLoop];
+    [loop run];
 }
-
 
 
 -(BOOL)updateStudent:(Student *)student
@@ -641,30 +684,6 @@ typedef enum
     result = [object jsonValue];
     return result;
 }
-
-//
-//#pragma mark - Helper methods
-//
-//-(void)getItemsForKeys:(NSArray *)keys
-//                inView:(NSString *)view
-//          onCompletion:(callbackWithDictionary)callback
-//{
-//    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:viewTodaysSchedule];
-//    NSMutableURLRequest *request = [self requestWithUrl:strUrl];
-//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:@{@"keys": keys} options:NSJSONWritingPrettyPrinted error:NULL];
-//    
-//    [request setHTTPBody:jsonData];
-//    [request setHTTPMethod:@"POST"];
-//    
-//    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *responce, NSData *data, NSError *error) {
-//        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-//        NSMutableArray *items = [[[NSMutableArray alloc] initWithCapacity:[result[@"rows"]count]];
-//        for (NSDictionary *d in result[@"rows"]) {
-//            [items addObject:d[@"value"]];
-//        }
-//        callback(items);
-//    }];
-//}
 
 
 @end
