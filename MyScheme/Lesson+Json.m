@@ -14,6 +14,7 @@
 {
     NSMutableDictionary *selfAsJson = [[NSMutableDictionary alloc] init];
 
+    selfAsJson[@"subject"] = self.subject;
     selfAsJson[@"name"] = self.name;
     selfAsJson[@"type"] = self.type;
     selfAsJson[@"course"] = self.course;

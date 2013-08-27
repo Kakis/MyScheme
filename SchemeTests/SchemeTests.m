@@ -46,15 +46,24 @@ static NSString * const javaKey = @"java_key";
     students = @{appdevKey:[[NSMutableSet alloc] init],
                  javaKey:[[NSMutableSet alloc] init]};
     
-    appdevLesson = [[Lesson alloc] initWithCourse:@"appdev"
-                                             type:@"lesson"
-                                             week:@"1"
-                                              day:@"monday"
-                                       lessontime:@"09:00"
-                                          teacher:@"Anders"
-                                        classroom:@"4108"
-                                       assignment:@"Read chapter 19: Object Instance Variables"];
-
+//    appdevLesson = [[Lesson alloc] initWithCourse:@"appdev"
+//                                             type:@"lesson"
+//                                             week:@"1"
+//                                              day:@"monday"
+//                                       lessontime:@"09:00"
+//                                          teacher:@"Anders"
+//                                        classroom:@"4108"
+//                                       assignment:@"Read chapter 19: Object Instance Variables"];
+    
+    Lesson *ios_lesson6 = [[Lesson alloc] initWithName:@"Core Data"
+                                                  type:@"lesson"
+                                                course:@"iOS"
+                                                  week:@"24"
+                                                   day:@"monday"
+                                            lessontime:@"09:00"
+                                               teacher:@"Anders"
+                                             classroom:@"4108"
+                                            assignment:@"Read chapter 16, Core Data"];
     
     appdevStudent = [[Student alloc] initWithLastName:@"Hagfeldt"
                                             firstName:@"Jens"

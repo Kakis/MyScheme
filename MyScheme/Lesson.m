@@ -13,21 +13,23 @@
 
 - (id)init
 {
-    return [self initWithName:@""
-                         type:@""
-                       course:@""
-                         week:@""
-                          day:@""
-                   lessontime:@""
-                      teacher:@""
-                    classroom:@""
-                   assignment:@""];
+    return [self initWithSubject:@""
+                            name:@""
+                            type:@""
+                          course:@""
+                            week:@""
+                             day:@""
+                      lessontime:@""
+                         teacher:@""
+                       classroom:@""
+                      assignment:@""];
 }
 
 
-- (id)initWithName:(NSString *)name
-              type:(NSString *)type
-            course:(NSString *)course
+-(id)initWithSubject:(NSString *)subject
+                name:(NSString *)name
+                type:(NSString *)type
+              course:(NSString *)course
                 week:(NSString *)week
                  day:(NSString *)day
           lessontime:(NSString *)lessontime
@@ -38,6 +40,7 @@
     self = [super init];
     if (self) {
         self.name = name;
+        self.subject = subject;
         self.type = type;
         self.course = course;
         self.week = week;
@@ -73,7 +76,7 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"\nYour %@ lesson about %@ in room %@ on %@ week %@ starts at %@. \nYour teacher %@ have given you the assignment to %@", self.course, self.name, self.classroom, self.day, self.week, self.lessontime, self.teacher, self.assignment];
+    return [NSString stringWithFormat:@"\nYour %@ lesson about %@ in room %@ on %@ week %@ starts at %@. \nYour teacher %@ have given you the assignment to %@", self.course, self.subject, self.classroom, self.day, self.week, self.lessontime, self.teacher, self.assignment];
 }
 
 

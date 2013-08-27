@@ -16,7 +16,7 @@ int main(int argc, const char * argv[])
 
     @autoreleasepool {
 
-/////////////////////////////////////// Initializing objects in couch.db /////////////////////////////////////
+////////////////////////////////////////// Initializing objects /////////////////////////////////////////
 
         
         Student *jens = [[Student alloc] initWithLastName:@"Hagfeldt"
@@ -25,11 +25,14 @@ int main(int argc, const char * argv[])
                                                    course:@"iOS"];
         
         Student *kristoffer = [[Student alloc] initWithLastName:@"Bergkvist"
-                                                  firstName:@"Kristoffer"
-                                                       type:@"student"
-                                                     course:@"Objective C"];
+                                                      firstName:@"Kristoffer"
+                                                           type:@"student"
+                                                         course:@"Objective C"];
         
-        Lesson *objC_lesson1 = [[Lesson alloc] initWithName:@"Object Instance Variables"
+        // ------------------------------------- Objective C lessons -----------------------------------//
+        
+        Lesson *objC_lesson1 = [[Lesson alloc] initWithSubject:@"Object Instance Variables"
+                                                       name:@"objC_lesson1"
                                                        type:@"lesson"
                                                      course:@"Objective C"
                                                        week:@"21"
@@ -38,96 +41,109 @@ int main(int argc, const char * argv[])
                                                     teacher:@"Anders"
                                                   classroom:@"4108"
                                                  assignment:@"read chapter 19 - Object Instance Variables"];
-
-        Lesson *objC_lesson2 = [[Lesson alloc] initWithName:@"Collection Classes"
-                                                       type:@"lesson"
-                                                     course:@"Objective C"
-                                                       week:@"21"
-                                                        day:@"tuesday"
-                                                 lessontime:@"09:00"
-                                                    teacher:@"Anders"
-                                                  classroom:@"4108"
-                                                 assignment:@"read chapter 21 - Collection Classes"];
         
-        Lesson *objC_lesson3 = [[Lesson alloc] initWithName:@"Protocols"
-                                                       type:@"lesson"
-                                                     course:@"Objective C"
-                                                       week:@"21"
-                                                        day:@"friday"
-                                                 lessontime:@"09:00"
-                                                    teacher:@"Anders"
-                                                  classroom:@"4108"
-                                                 assignment:@"read chapter 25 - Protocols"];
+        Lesson *objC_lesson2 = [[Lesson alloc] initWithSubject:@"Collection Classes"
+                                                          name:@"objC_lesson2"
+                                                          type:@"lesson"
+                                                        course:@"Objective C"
+                                                          week:@"21"
+                                                           day:@"tuesday"
+                                                    lessontime:@"09:00"
+                                                       teacher:@"Anders"
+                                                     classroom:@"4108"
+                                                    assignment:@"read chapter 21 - Collection Classes"];
         
-        Lesson *objC_lesson4 = [[Lesson alloc] initWithName:@"Project start"
-                                                       type:@"lesson"
-                                                     course:@"Objective C"
-                                                       week:@"23"
-                                                        day:@"wednesday"
-                                                 lessontime:@"09:00"
-                                                    teacher:@"Anders"
-                                                  classroom:@"Aulan"
-                                                 assignment:@"start working on your project"];
+        Lesson *objC_lesson3 = [[Lesson alloc] initWithSubject:@"Object Instance Variables"
+                                                          name:@"objC_lesson3"
+                                                          type:@"lesson"
+                                                        course:@"Objective C"
+                                                          week:@"21"
+                                                           day:@"friday"
+                                                    lessontime:@"09:00"
+                                                       teacher:@"Anders"
+                                                     classroom:@"4108"
+                                                    assignment:@"read chapter 25 - Protocols"];
         
-        Lesson *objC_lesson5 = [[Lesson alloc] initWithName:@"Finish project"
-                                                       type:@"lesson"
-                                                     course:@"Objective C"
-                                                       week:@"23"
-                                                        day:@"thursday"
-                                                 lessontime:@"09:00"
-                                                    teacher:@"Anders"
-                                                  classroom:@"4108"
-                                                 assignment:@"finish your project"];
+        Lesson *objC_lesson4 = [[Lesson alloc] initWithSubject:@"Project start"
+                                                          name:@"objC_lesson4"
+                                                          type:@"lesson"
+                                                        course:@"Objective C"
+                                                          week:@"23"
+                                                           day:@"wednesday"
+                                                    lessontime:@"09:00"
+                                                       teacher:@"Anders"
+                                                     classroom:@"Aulan"
+                                                    assignment:@"start working on your project"];
         
-        Lesson *iOS_lesson1 = [[Lesson alloc] initWithName:@"View Controllers"
-                                                      type:@"lesson"
-                                                    course:@"iOS"
-                                                      week:@"22"
-                                                       day:@"monday"
-                                                lessontime:@"09:00"
-                                                   teacher:@"Anders"
-                                                 classroom:@"4108"
-                                                assignment:@"read chapter 7 - View Controllers"];
+        Lesson *objC_lesson5 = [[Lesson alloc] initWithSubject:@"Finish project"
+                                                          name:@"objC_lesson5"
+                                                          type:@"lesson"
+                                                        course:@"Objective C"
+                                                          week:@"23"
+                                                           day:@"thursday"
+                                                    lessontime:@"09:00"
+                                                       teacher:@"Anders"
+                                                     classroom:@"4108"
+                                                    assignment:@"finish your project"];
         
-        Lesson *iOS_lesson2 = [[Lesson alloc] initWithName:@"Camera"
-                                                     type:@"lesson"
-                                                   course:@"iOS"
-                                                     week:@"22"
-                                                      day:@"tuesday"
-                                               lessontime:@"09:00"
-                                                  teacher:@"Anders"
-                                                classroom:@"4108"
-                                               assignment:@"read chapter 12 - Camera"];
+        // -------------------------------------- iOS lessons ------------------------------------//
         
-        Lesson *iOS_lesson3 = [[Lesson alloc] initWithName:@"WWDC 2012"
-                                                      type:@"lesson"
-                                                    course:@"iOS"
-                                                      week:@"22"
-                                                       day:@"friday"
-                                                lessontime:@"09:00"
-                                                   teacher:@"Anders"
-                                                 classroom:@"Aulan"
-                                                assignment:@"watch WWDC 2012 and make notes"];
+        Lesson *iOS_lesson1 = [[Lesson alloc] initWithSubject:@"View Controllers"
+                                                          name:@"iOS_lesson1"
+                                                          type:@"lesson"
+                                                        course:@"iOS"
+                                                          week:@"22"
+                                                           day:@"monday"
+                                                    lessontime:@"09:00"
+                                                       teacher:@"Anders"
+                                                     classroom:@"4108"
+                                                    assignment:@"read chapter 7 - View Controllers"];
         
-        Lesson *iOS_lesson4 = [[Lesson alloc] initWithName:@"Popover Controllers"
-                                                      type:@"lesson"
-                                                    course:@"iOS"
-                                                      week:@"23"
-                                                       day:@"wednesday"
-                                                lessontime:@"09:00"
-                                                   teacher:@"Anders"
-                                                 classroom:@"4108"
-                                                assignment:@"read chapter 15 - Popover Controllers"];
+        Lesson *iOS_lesson2 = [[Lesson alloc] initWithSubject:@"View Controllers"
+                                                         name:@"iOS_lesson2"
+                                                         type:@"lesson"
+                                                       course:@"iOS"
+                                                         week:@"22"
+                                                          day:@"tuesday"
+                                                   lessontime:@"09:00"
+                                                      teacher:@"Anders"
+                                                    classroom:@"4108"
+                                                   assignment:@"read chapter 12 - Camera"];
         
-        Lesson *iOS_lesson5 = [[Lesson alloc] initWithName:@"Exam"
-                                                      type:@"lesson"
-                                                    course:@"iOS"
-                                                      week:@"23"
-                                                       day:@"thursday"
-                                                lessontime:@"09:00"
-                                                   teacher:@"Anders"
-                                                 classroom:@"Aulan"
-                                                assignment:@"write an app"];
+        Lesson *iOS_lesson3 = [[Lesson alloc] initWithSubject:@"WWDC 2013"
+                                                         name:@"iOS_lesson3"
+                                                         type:@"lesson"
+                                                       course:@"iOS"
+                                                         week:@"22"
+                                                          day:@"friday"
+                                                   lessontime:@"09:00"
+                                                      teacher:@"Anders"
+                                                    classroom:@"Aulan"
+                                                   assignment:@"watch WWDC 2013 and make notes"];
+        
+        Lesson *iOS_lesson4 = [[Lesson alloc] initWithSubject:@"Popover Controllers"
+                                                         name:@"iOS_lesson4"
+                                                         type:@"lesson"
+                                                       course:@"iOS"
+                                                         week:@"23"
+                                                          day:@"wednesday"
+                                                   lessontime:@"09:00"
+                                                      teacher:@"Anders"
+                                                    classroom:@"4108"
+                                                   assignment:@"read chapter 15 - Popover Controllers"];
+      
+        Lesson *iOS_lesson5 = [[Lesson alloc] initWithSubject:@"Exam"
+                                                         name:@"iOS_lesson5"
+                                                         type:@"lesson"
+                                                       course:@"iOS"
+                                                         week:@"23"
+                                                          day:@"thursday"
+                                                   lessontime:@"09:00"
+                                                      teacher:@"Anders"
+                                                    classroom:@"Aulan"
+                                                   assignment:@"write your own app"];
+        
+        // ---------------------------------------- Messages ---------------------------------------//
         
         Message *private_message1 = [[Message alloc] initWithTitle:@"private_message1"
                                                          subject:@"tips kapitel 4"
@@ -165,7 +181,8 @@ int main(int argc, const char * argv[])
 //        [scheme addNewLesson:objC_lesson3 adminPassword:@"admin"];
 //        [scheme addNewLesson:objC_lesson4 adminPassword:@"admin"];
 //        [scheme addNewLesson:objC_lesson5 adminPassword:@"admin"];
-//        
+//
+//        // Adding lessons to the iOS-course
 //        [scheme addNewLesson:iOS_lesson1 adminPassword:@"admin"];
 //        [scheme addNewLesson:iOS_lesson2 adminPassword:@"admin"];
 //        [scheme addNewLesson:iOS_lesson3 adminPassword:@"admin"];
@@ -230,18 +247,16 @@ int main(int argc, const char * argv[])
 
         
 //        // Save Lessons to couch.db
-//        [scheme saveLessonToDb:objC_lesson1];
-//        [scheme saveLessonToDb:objC_lesson2];
-//        [scheme saveLessonToDb:objC_lesson3];
-//        [scheme saveLessonToDb:objC_lesson4];
-//        [scheme saveLessonToDb:objC_lesson5];
-
-        
-//        [scheme saveLessonToDb:iOS_lesson1];
-//        [scheme saveLessonToDb:iOS_lesson2];
-//        [scheme saveLessonToDb:iOS_lesson3];
-//        [scheme saveLessonToDb:iOS_lesson4];
-//        [scheme saveLessonToDb:iOS_lesson5];
+//        [scheme saveLessonToDb:objC_lesson1 adminPassword:@"admin"];
+//        [scheme saveLessonToDb:objC_lesson2 adminPassword:@"admin"];
+//        [scheme saveLessonToDb:objC_lesson3 adminPassword:@"admin"];
+//        [scheme saveLessonToDb:objC_lesson4 adminPassword:@"admin"];
+//        [scheme saveLessonToDb:objC_lesson5 adminPassword:@"admin"];     
+//        [scheme saveLessonToDb:iOS_lesson1 adminPassword:@"admin"];
+//        [scheme saveLessonToDb:iOS_lesson2 adminPassword:@"admin"];
+//        [scheme saveLessonToDb:iOS_lesson3 adminPassword:@"admin"];
+//        [scheme saveLessonToDb:iOS_lesson4 adminPassword:@"admin"];
+//        [scheme saveLessonToDb:iOS_lesson5 adminPassword:@"admin"];
         
         
 //        [scheme saveMessage:objective_c_message1];
@@ -282,7 +297,7 @@ int main(int argc, const char * argv[])
 
         
         
-//        // Hämta schema för vecka 23
+//        // Hämta schema för kurs Objective C vecka 23
 //        [scheme getScheduleForCourse:@"Objective C"
 //                                Week:@"23"
 //                        onCompletion:^(NSArray *getObject){
@@ -302,7 +317,7 @@ int main(int argc, const char * argv[])
 ///////// En elev ska kunna se* sitt schema för dagen /////////////////////////////////////////////////////////
 
         
-//        // Hämta schema för kurs iOS måndag vecka 23
+//        // Hämta schema för kurs iOS måndag vecka 22
 //        [scheme getScheduleForCourse:@"iOS"
 //                                Week:@"22"
 //                              andDay:@"monday" onCompletion:^(NSArray *getObject){
@@ -320,7 +335,8 @@ int main(int argc, const char * argv[])
         
 ////////// En elev ska kunna se* läsanvisningar för veckan ////////////////////////////////////////////////////
 
-        
+
+//        // Hämta Objective C-kursens läsanvisningar för vecka 21
 //        [scheme getAssignmentsForCourse:@"Objective C"
 //                                   Week:@"21"
 //                           onCompletion:^(NSArray *getObject){
@@ -335,7 +351,7 @@ int main(int argc, const char * argv[])
 ////////// En elev ska kunna se* läsanvisningar för dagen ////////////////////////////////////////////////////
 
         
-//        // Hämta iOS-kursens läsanvisningar för tisdagen vecka 22
+//        // Hämta iOS-kursens läsanvisningar för fredagen vecka 22
 //        [scheme getAssignmentsForCourse:@"iOS"
 //                                   Week:@"22"
 //                                 andDay:@"friday"
@@ -349,15 +365,49 @@ int main(int argc, const char * argv[])
 
         
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-
+      
 
 ////// En administratör ska kunna ändra information i ett schema //////////////////////////////////////////////
 //
 //
-//
+////////////////////// OBS - NOT WORKING YET !!!
         
+
+///////// Hämta första alla data för lesson "Camera" /////////////////////////////////////////////////////////
+
+
+//        [scheme getLesson:@"Camera" onCompletion:^(NSArray *getObject){
+//            for(id _id in getObject) {
+//                NSLog(@"%@", [[NSString alloc] initWithData:_id
+//                                                   encoding:NSUTF8StringEncoding]);
+//                
+//            }
+//        }];
+        
+        // ID: 90EAC9E5-205A-4012-B17F-5291A6E654A5
+        // REV: 1-e82a77833d2701cfdc2c7918c179ed69
+        
+
+///// Ändra något i lesson "Camera". Kopiera sedan in det hämtade rev-numret /////////////////
+///// i strängen märkt 'andRev' här nedan och kör sedan update ////////////////////////////
+        
+        
+//        [scheme updateLesson:jens
+//                      withID:@"90EAC9E5-205A-4012-B17F-5291A6E654A5"
+//                      andRev:@""
+//               adminPassword:@"admin"];
+
      
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
 ///////// Hämta första alla data för student Jens /////////////////////////////////////////////////////////////
 
