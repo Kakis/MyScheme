@@ -163,25 +163,28 @@ int main(int argc, const char * argv[])
         
         Scheme *scheme = [[Scheme alloc] init];
         
-        
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
+                
         
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+//------- * En administratör ska kunna lägga in ett nytt schema för en viss kurs ----------------------------//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
-///////// En administratör ska kunna lägga in ett nytt schema för en viss kurs ////////////////////////////////
-
         
 //        // Adding students attending the ObjectiveC-course
 //        [scheme addNewStudent:jens adminPassword:@"admin"];
 //        [scheme addNewStudent:kristoffer adminPassword:@"admin"];
-//        
+
+
 //        // Adding lessons to the ObjectiveC-course
 //        [scheme addNewLesson:objC_lesson1 adminPassword:@"admin"];
 //        [scheme addNewLesson:objC_lesson2 adminPassword:@"admin"];
 //        [scheme addNewLesson:objC_lesson3 adminPassword:@"admin"];
 //        [scheme addNewLesson:objC_lesson4 adminPassword:@"admin"];
 //        [scheme addNewLesson:objC_lesson5 adminPassword:@"admin"];
-//
+
+
 //        // Adding lessons to the iOS-course
 //        [scheme addNewLesson:iOS_lesson1 adminPassword:@"admin"];
 //        [scheme addNewLesson:iOS_lesson2 adminPassword:@"admin"];
@@ -193,12 +196,13 @@ int main(int argc, const char * argv[])
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-///////// En administratör ska kunna lägga in ett meddelande till alla elever i en kurs ///////////////////////
-
-
-//        [scheme addNewMessage:objective_c_message1];
         
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//------- * En administratör ska kunna lägga in ett meddelande till alla elever i en kurs -------------------//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+
+//        [scheme addNewMessage:objective_c_message1];        
         
 //        [scheme saveMessage:objective_c_message1];
 
@@ -214,14 +218,15 @@ int main(int argc, const char * argv[])
         
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
+
         
-        
-///////// En administratör ska kunna lägga in ett meddelande till en viss elev ////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+//------- * En administratör ska kunna lägga in ett meddelande till en viss elev ----------------------------//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         
 //        [scheme addNewMessage:private_message1];
 
-        
 //        [scheme saveMessage:private_message1];
         
 
@@ -237,9 +242,10 @@ int main(int argc, const char * argv[])
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-        
-///////// All data ska sparas i CouchDB (Iris Couch eller lokalt installerad) /////////////////////////////////
-        
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+//------- * All data ska sparas i CouchDB (Iris Couch eller lokalt installerad) -----------------------------//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 //        // Save Students to couch.db
 //        [scheme saveStudentToDb:jens];
@@ -267,9 +273,10 @@ int main(int argc, const char * argv[])
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+//------- * En elev ska kunna se* sitt schema för veckan ----------------------------------------------------//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
-///////// En elev ska kunna se* sitt schema för veckan ////////////////////////////////////////////////////////
-
 
 //        // Hämta schema för kurs Objective C vecka 21
 //        [scheme getScheduleForCourse:@"Objective C"
@@ -309,13 +316,13 @@ int main(int argc, const char * argv[])
 //        }];
 
         
-        
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         
-    
-///////// En elev ska kunna se* sitt schema för dagen /////////////////////////////////////////////////////////
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+//------- * En elev ska kunna se* sitt schema för dagen -----------------------------------------------------//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         
 //        // Hämta schema för kurs iOS måndag vecka 22
 //        [scheme getScheduleForCourse:@"iOS"
@@ -332,9 +339,10 @@ int main(int argc, const char * argv[])
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+//------- * En elev ska kunna se* läsanvisningar för veckan -------------------------------------------------//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
-////////// En elev ska kunna se* läsanvisningar för veckan ////////////////////////////////////////////////////
-
 
 //        // Hämta Objective C-kursens läsanvisningar för vecka 21
 //        [scheme getAssignmentsForCourse:@"Objective C"
@@ -347,9 +355,11 @@ int main(int argc, const char * argv[])
 //            }
 //        }];
 
-        
-////////// En elev ska kunna se* läsanvisningar för dagen ////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//------- * En elev ska kunna se* läsanvisningar för dagen --------------------------------------------------//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         
 //        // Hämta iOS-kursens läsanvisningar för fredagen vecka 22
 //        [scheme getAssignmentsForCourse:@"iOS"
@@ -365,18 +375,18 @@ int main(int argc, const char * argv[])
 
         
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      
 
-////// En administratör ska kunna ändra information i ett schema //////////////////////////////////////////////
-//
-//
-////////////////////// OBS - NOT WORKING YET !!!
+
+        
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//------- * En administratör ska kunna ändra information i ett schema ---------------------------------------//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
 
-///////// Hämta första alla data för lesson "Camera" /////////////////////////////////////////////////////////
+////----- Hämta först alla data för lesson "iOS_lesson1" ----------------------------------------------------//
 
-
-//        [scheme getLesson:@"Camera" onCompletion:^(NSArray *getObject){
+        
+//        [scheme getLesson:@"iOS_lesson1" onCompletion:^(NSArray *getObject){
 //            for(id _id in getObject) {
 //                NSLog(@"%@", [[NSString alloc] initWithData:_id
 //                                                   encoding:NSUTF8StringEncoding]);
@@ -384,92 +394,26 @@ int main(int argc, const char * argv[])
 //            }
 //        }];
         
-        // ID: 90EAC9E5-205A-4012-B17F-5291A6E654A5
-        // REV: 1-e82a77833d2701cfdc2c7918c179ed69
-        
 
-///// Ändra något i lesson "Camera". Kopiera sedan in det hämtade rev-numret /////////////////
-///// i strängen märkt 'andRev' här nedan och kör sedan update ////////////////////////////
+////--- Ändra något i "iOS_lesson1" längst upp --------------------------------------------------------------//
+//----- (dock inte name eller course som vi använder för GET & PUT) -----------------------------------------//
+//----- Kopiera sedan in det nyss returnerade rev-numret från "iOS_lesson1" ---------------------------------//
+//----- och klistra in det i strängen märkt andRev:@"" här nedan innan du kör update ------------------------//
         
         
-//        [scheme updateLesson:jens
-//                      withID:@"90EAC9E5-205A-4012-B17F-5291A6E654A5"
+//        [scheme updateLesson:iOS_lesson1
+//                      withId:@"82AA7186-A940-4745-9AD8-E68022A210BD"
 //                      andRev:@""
 //               adminPassword:@"admin"];
-
-     
-    
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-///////// Hämta första alla data för student Jens /////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         
-//        [scheme getStudent:jens onCompletion:^(NSArray *getStudent){
-//            for(id _id in getStudent) {
-//                NSLog(@"%@", [[NSString alloc] initWithData:_id
-//                                                   encoding:NSUTF8StringEncoding]);
-//
-//            }
-//        }];
-
-
-///// Ändra något i student Jens. Kopiera sedan in det hämtade rev-numret /////////////////
-///// i strängen märkt 'andRev' här nedan och kör sedan update ////////////////////////////
-
-
-//        [scheme updateStudent:jens
-//                       withID:@"7F010E1D-7A63-42E0-BB7C-F54A0AFEF2A8"
-//                       andRev:@""
-//                adminPassword:@"admin"];
         
-
-        
-///////// Hämta alla data för student Kristoffer //////////////////////////////////////////////////////////////
-//
-//        [scheme getStudent:kristoffer onCompletion:^(NSArray *getStudent){
-//            for(id _id in getStudent) {
-//                NSLog(@"%@", [[NSString alloc] initWithData:_id
-//                                                   encoding:NSUTF8StringEncoding]);
-//                
-//            }
-//        }];
-
-
-///// Ändra något i student Jens. Kopiera sedan in det hämtade rev-numret /////////////////
-///// i strängen märkt 'andRev' här nedan och kör sedan update ////////////////////////////
-        
-
-//
-//        [scheme updateStudent:kristoffer
-//                       withID:@"BD6D791E-C6B3-4897-8864-2F50B313BE00"
-//                       andRev:@""
-//                adminPassword:@"admin"];
-        
-    
-
-///////// Hämta alla studenter ///////////////////////////////////////////////////////////////////////////////
-//
-//        [scheme getAllStudents:@"student" onCompletion:^(NSArray *getStudent){
-//                    for(id _id in getStudent) {
-//                        NSLog(@"%@", [[NSString alloc] initWithData:_id
-//                                                           encoding:NSUTF8StringEncoding]);
-//
-//                    }
-//                }];
-
-        
-
         
     }
- 
     return 0;
 }
 
