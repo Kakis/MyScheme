@@ -139,31 +139,54 @@ static NSString * const viewAllObjectiveCStudents = @"http://kakis.iriscouch.com
 {
     if([password isEqualToString:@"admin"])
     {
-        NSDictionary *lessonAsJson = [self serializeObjectToJson:lesson];
-        
-        NSData *lessonAsData = [NSJSONSerialization dataWithJSONObject:lessonAsJson
-                                                               options:NSJSONWritingPrettyPrinted
-                                                                 error:NULL];
-        
-        NSURL *url = [NSURL URLWithString:@"http://kakis.iriscouch.com/schedule_lessons"];
-        
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-        
-        [request setHTTPMethod:@"POST"];
-        
-        [request setValue:@"application/json"
-       forHTTPHeaderField:@"Content-Type"];
-        
-        [request setHTTPBody:lessonAsData];
-        
-        NSURLConnection *connection = [NSURLConnection connectionWithRequest:request
-                                                                    delegate:nil];
-        [connection start];
-        
-        NSRunLoop *loop = [NSRunLoop currentRunLoop];
-        [loop run];
+        if (!([lesson.subject isEqualToString:@""]
+              ||
+              [lesson.name isEqualToString:@""]
+              ||
+              [lesson.type isEqualToString:@""]
+              ||
+              [lesson.course isEqualToString:@""]
+              ||
+              [lesson.week isEqualToString:@""]
+              ||
+              [lesson.day isEqualToString:@""]
+              ||
+              [lesson.lessontime isEqualToString:@""]
+              ||
+              [lesson.teacher isEqualToString:@""]
+              ||
+              [lesson.classroom isEqualToString:@""]
+              ||
+              [lesson.assignment isEqualToString:@""]))
+        {
+            NSDictionary *lessonAsJson = [self serializeObjectToJson:lesson];
+            
+            NSData *lessonAsData = [NSJSONSerialization dataWithJSONObject:lessonAsJson
+                                                                   options:NSJSONWritingPrettyPrinted
+                                                                     error:NULL];
+            
+            NSURL *url = [NSURL URLWithString:@"http://kakis.iriscouch.com/schedule_lessons"];
+            
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+            
+            [request setHTTPMethod:@"POST"];
+            
+            [request setValue:@"application/json"
+           forHTTPHeaderField:@"Content-Type"];
+            
+            [request setHTTPBody:lessonAsData];
+            
+            NSURLConnection *connection = [NSURLConnection connectionWithRequest:request
+                                                                        delegate:nil];
+            [connection start];
+            
+            NSRunLoop *loop = [NSRunLoop currentRunLoop];
+            [loop run];
+            
+            return YES;
+        }
     }
-    return YES;
+    return NO;
 }
 
 
@@ -387,7 +410,8 @@ static NSString * const viewAllObjectiveCStudents = @"http://kakis.iriscouch.com
 
 #pragma mark - Managing messages
 
--(BOOL)addNewMessage:(Message *)message;
+-(BOOL)addNewMessage:(Message *)message
+       adminPassword:(NSString *)adminpassword;
 {
     if (messages[message.id]) {
         return NO;
@@ -510,9 +534,9 @@ static NSString * const viewAllObjectiveCStudents = @"http://kakis.iriscouch.com
 #pragma mark - Managing students
 
 -(BOOL)addNewStudent:(Student *)student
-       adminPassword:(NSString *)password;
+       adminPassword:(NSString *)adminpassword;
 {
-    if([password isEqualToString:@"admin"]){
+    if([adminpassword isEqualToString:@"admin"]){
         if([student.course isEqualToString:@"Objective C"])
         {
             [students[objCKey] addObject:student];
@@ -524,30 +548,46 @@ static NSString * const viewAllObjectiveCStudents = @"http://kakis.iriscouch.com
     return YES;
 }
 
--(void)saveStudentToDb:(Student *)student
+-(BOOL)saveStudentToDb:(Student *)student
+         adminPassword:(NSString *)adminpassword
 {
-    NSDictionary *studentAsJson = [self serializeObjectToJson:student];
-
-    NSData *studentAsData = [NSJSONSerialization dataWithJSONObject:studentAsJson
-                                                            options:NSJSONWritingPrettyPrinted
-                                                              error:NULL];
-
-    NSURL *url = [NSURL URLWithString:urlForStudents];
-
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-
-    [request setHTTPMethod:@"POST"];
-
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-
-    [request setHTTPBody:studentAsData];
-
-    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request
-                                                                delegate:nil];
-    [connection start];
-    
-    NSRunLoop *loop = [NSRunLoop currentRunLoop];
-    [loop run];
+    if ([adminpassword isEqualToString:@"admin"])
+    {
+        if (!([student.firstName isEqualToString:@""]
+              ||
+              [student.lastName isEqualToString:@""]
+              ||
+              [student.type isEqualToString:@""]
+              ||
+              [student.course isEqualToString:@""]))
+        {
+            NSDictionary *studentAsJson = [self serializeObjectToJson:student];
+            
+            NSData *studentAsData = [NSJSONSerialization dataWithJSONObject:studentAsJson
+                                                                    options:NSJSONWritingPrettyPrinted
+                                                                      error:NULL];
+            
+            NSURL *url = [NSURL URLWithString:urlForStudents];
+            
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+            
+            [request setHTTPMethod:@"POST"];
+            
+            [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+            
+            [request setHTTPBody:studentAsData];
+            
+            NSURLConnection *connection = [NSURLConnection connectionWithRequest:request
+                                                                        delegate:nil];
+            [connection start];
+            
+            NSRunLoop *loop = [NSRunLoop currentRunLoop];
+            [loop run];
+            
+            return YES;
+        }
+    }
+    return NO;
 }
 
 

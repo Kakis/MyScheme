@@ -95,7 +95,7 @@ int main(int argc, const char * argv[])
                                                           week:@"22"
                                                            day:@"monday"
                                                     lessontime:@"09:00"
-                                                       teacher:@"Anders"
+                                                       teacher:@"Tom"
                                                      classroom:@"4108"
                                                     assignment:@"read chapter 7 - View Controllers"];
         
@@ -150,16 +150,14 @@ int main(int argc, const char * argv[])
                                                           sender:@"Admin"
                                                         receiver:@"Jens"
                                                             type:@"message"
-                                                         message:@"Kolla YouTube klippet på url: X"
-                                                       isPrivate:YES];
+                                                         message:@"Kolla YouTube klippet på url: X"];
         
         Message *objective_c_message1 = [[Message alloc] initWithTitle:@"obj_C_course_message"
                                                                subject:@"ny sal"
                                                                 sender:@"Admin"
                                                               receiver:@"Objective C"
                                                                   type:@"message"
-                                                               message:@"Vi ska vara i sal 3108 på fredag"
-                                                             isPrivate:NO];
+                                                               message:@"Vi ska vara i sal 3108 på fredag"];
         
         Scheme *scheme = [[Scheme alloc] init];
         
@@ -202,9 +200,9 @@ int main(int argc, const char * argv[])
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
 
-//        [scheme addNewMessage:objective_c_message1];        
+//        [scheme addNewMessage:objective_c_message1 adminPassword:@"admin"];
         
-//        [scheme saveMessage:objective_c_message1];
+//        [scheme saveMessage:objective_c_message1 adminPassword:@"admin"];
 
         
 //        [scheme getMessagesForCourse:@"Objective C" onCompletion:^(NSArray *getObject){
@@ -225,9 +223,9 @@ int main(int argc, const char * argv[])
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         
-//        [scheme addNewMessage:private_message1];
+//        [scheme addNewMessage:private_message1 adminPassword:@"admin"];
 
-//        [scheme saveMessage:private_message1];
+//        [scheme saveMessage:private_message1 adminPassword:@"admin"];
         
 
 //        [scheme getPrivateMessagesFor:jens onCompletion:^(NSArray *getObject){
@@ -248,8 +246,8 @@ int main(int argc, const char * argv[])
 
 
 //        // Save Students to couch.db
-//        [scheme saveStudentToDb:jens];
-//        [scheme saveStudentToDb:kristoffer];
+//        [scheme saveStudentToDb:jens adminPassword:@"admin"];
+//        [scheme saveStudentToDb:kristoffer adminPassword:@"admin"];
 
         
 //        // Save Lessons to couch.db
@@ -403,7 +401,7 @@ int main(int argc, const char * argv[])
         
 //        [scheme updateLesson:iOS_lesson1
 //                      withId:@"82AA7186-A940-4745-9AD8-E68022A210BD"
-//                      andRev:@""
+//                      andRev:@"4-89e713e65a68ccd81a958a6b02c154b4"
 //               adminPassword:@"admin"];
         
         

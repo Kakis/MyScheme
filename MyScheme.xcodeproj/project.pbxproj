@@ -14,19 +14,8 @@
 		B4A2128E172E9F0900C699BC /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A2128D172E9F0900C699BC /* Student.m */; };
 		B4A9307F17C7711E00EBE5F7 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9307D17C7711E00EBE5F7 /* Message.m */; };
 		B4A9308417C772F200EBE5F7 /* Message+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9308317C772F200EBE5F7 /* Message+Json.m */; };
-		B4ACBAF5172FBE5700FC9EDE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4ACBAF4172FBE5700FC9EDE /* SenTestingKit.framework */; };
-		B4ACBAF7172FBE5700FC9EDE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4ACBAF6172FBE5700FC9EDE /* Cocoa.framework */; };
-		B4ACBB01172FBE5700FC9EDE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4ACBAFF172FBE5700FC9EDE /* InfoPlist.strings */; };
-		B4ACBB04172FBE5700FC9EDE /* SchemeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ACBB03172FBE5700FC9EDE /* SchemeTests.m */; };
 		B4ACBB0C172FC5F200FC9EDE /* Student+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ACBB0B172FC5F200FC9EDE /* Student+Json.m */; };
-		B4ACBB0D172FC5F200FC9EDE /* Student+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ACBB0B172FC5F200FC9EDE /* Student+Json.m */; };
 		B4ACBB10172FC8F700FC9EDE /* Lesson+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ACBB0F172FC8F700FC9EDE /* Lesson+Json.m */; };
-		B4ACBB11172FC8F700FC9EDE /* Lesson+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ACBB0F172FC8F700FC9EDE /* Lesson+Json.m */; };
-		B4ACBB16172FDF7200FC9EDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A2127B172E9E3400C699BC /* main.m */; };
-		B4ACBB17172FDF7B00FC9EDE /* Scheme.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCBEC4172EE31700DF6712 /* Scheme.m */; };
-		B4ACBB18172FDF7E00FC9EDE /* Admin.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A21287172E9EB500C699BC /* Admin.m */; };
-		B4ACBB19172FDF8300FC9EDE /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A2128D172E9F0900C699BC /* Student.m */; };
-		B4ACBB1A172FDF8700FC9EDE /* Lesson.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCBEC7172EF0F000DF6712 /* Lesson.m */; };
 		B4DCBEC5172EE31700DF6712 /* Scheme.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCBEC4172EE31700DF6712 /* Scheme.m */; };
 		B4DCBEC8172EF0F000DF6712 /* Lesson.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCBEC7172EF0F000DF6712 /* Lesson.m */; };
 /* End PBXBuildFile section */
@@ -58,17 +47,11 @@
 		B4A9307E17C7711E00EBE5F7 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		B4A9308217C772F200EBE5F7 /* Message+Json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Message+Json.h"; sourceTree = "<group>"; };
 		B4A9308317C772F200EBE5F7 /* Message+Json.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Message+Json.m"; sourceTree = "<group>"; };
-		B4ACBAF3172FBE5700FC9EDE /* SchemeTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SchemeTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4ACBAF4172FBE5700FC9EDE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		B4ACBAF6172FBE5700FC9EDE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		B4ACBAF9172FBE5700FC9EDE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		B4ACBAFA172FBE5700FC9EDE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B4ACBAFB172FBE5700FC9EDE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		B4ACBAFE172FBE5700FC9EDE /* SchemeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SchemeTests-Info.plist"; sourceTree = "<group>"; };
-		B4ACBB00172FBE5700FC9EDE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B4ACBB02172FBE5700FC9EDE /* SchemeTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchemeTests.h; sourceTree = "<group>"; };
-		B4ACBB03172FBE5700FC9EDE /* SchemeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchemeTests.m; sourceTree = "<group>"; };
-		B4ACBB05172FBE5700FC9EDE /* SchemeTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SchemeTests-Prefix.pch"; sourceTree = "<group>"; };
 		B4ACBB09172FC58700FC9EDE /* JsonFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonFormat.h; sourceTree = "<group>"; };
 		B4ACBB0A172FC5F200FC9EDE /* Student+Json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Student+Json.h"; sourceTree = "<group>"; };
 		B4ACBB0B172FC5F200FC9EDE /* Student+Json.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Student+Json.m"; sourceTree = "<group>"; };
@@ -89,15 +72,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B4ACBAEF172FBE5700FC9EDE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B4ACBAF5172FBE5700FC9EDE /* SenTestingKit.framework in Frameworks */,
-				B4ACBAF7172FBE5700FC9EDE /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -105,7 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				B4A2127A172E9E3400C699BC /* MyScheme */,
-				B4ACBAFC172FBE5700FC9EDE /* SchemeTests */,
 				B4A21277172E9E3400C699BC /* Frameworks */,
 				B4A21276172E9E3400C699BC /* Products */,
 				B4A2127D172E9E3400C699BC /* Supporting Files */,
@@ -116,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				B4A21275172E9E3400C699BC /* MyScheme */,
-				B4ACBAF3172FBE5700FC9EDE /* SchemeTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -177,26 +149,6 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		B4ACBAFC172FBE5700FC9EDE /* SchemeTests */ = {
-			isa = PBXGroup;
-			children = (
-				B4ACBB02172FBE5700FC9EDE /* SchemeTests.h */,
-				B4ACBB03172FBE5700FC9EDE /* SchemeTests.m */,
-				B4ACBAFD172FBE5700FC9EDE /* Supporting Files */,
-			);
-			path = SchemeTests;
-			sourceTree = "<group>";
-		};
-		B4ACBAFD172FBE5700FC9EDE /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B4ACBAFE172FBE5700FC9EDE /* SchemeTests-Info.plist */,
-				B4ACBAFF172FBE5700FC9EDE /* InfoPlist.strings */,
-				B4ACBB05172FBE5700FC9EDE /* SchemeTests-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -216,24 +168,6 @@
 			productName = MyScheme;
 			productReference = B4A21275172E9E3400C699BC /* MyScheme */;
 			productType = "com.apple.product-type.tool";
-		};
-		B4ACBAF2172FBE5700FC9EDE /* SchemeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B4ACBB08172FBE5700FC9EDE /* Build configuration list for PBXNativeTarget "SchemeTests" */;
-			buildPhases = (
-				B4ACBAEE172FBE5700FC9EDE /* Sources */,
-				B4ACBAEF172FBE5700FC9EDE /* Frameworks */,
-				B4ACBAF0172FBE5700FC9EDE /* Resources */,
-				B4ACBAF1172FBE5700FC9EDE /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SchemeTests;
-			productName = SchemeTests;
-			productReference = B4ACBAF3172FBE5700FC9EDE /* SchemeTests.octest */;
-			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -257,37 +191,9 @@
 			projectRoot = "";
 			targets = (
 				B4A21274172E9E3400C699BC /* MyScheme */,
-				B4ACBAF2172FBE5700FC9EDE /* SchemeTests */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		B4ACBAF0172FBE5700FC9EDE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B4ACBB01172FBE5700FC9EDE /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		B4ACBAF1172FBE5700FC9EDE /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B4A21271172E9E3400C699BC /* Sources */ = {
@@ -306,33 +212,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B4ACBAEE172FBE5700FC9EDE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B4ACBB04172FBE5700FC9EDE /* SchemeTests.m in Sources */,
-				B4ACBB0D172FC5F200FC9EDE /* Student+Json.m in Sources */,
-				B4ACBB11172FC8F700FC9EDE /* Lesson+Json.m in Sources */,
-				B4ACBB16172FDF7200FC9EDE /* main.m in Sources */,
-				B4ACBB17172FDF7B00FC9EDE /* Scheme.m in Sources */,
-				B4ACBB18172FDF7E00FC9EDE /* Admin.m in Sources */,
-				B4ACBB19172FDF8300FC9EDE /* Student.m in Sources */,
-				B4ACBB1A172FDF8700FC9EDE /* Lesson.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		B4ACBAFF172FBE5700FC9EDE /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B4ACBB00172FBE5700FC9EDE /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B4A21281172E9E3400C699BC /* Debug */ = {
@@ -412,32 +292,6 @@
 			};
 			name = Release;
 		};
-		B4ACBB06172FBE5700FC9EDE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SchemeTests/SchemeTests-Prefix.pch";
-				INFOPLIST_FILE = "SchemeTests/SchemeTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		B4ACBB07172FBE5700FC9EDE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SchemeTests/SchemeTests-Prefix.pch";
-				INFOPLIST_FILE = "SchemeTests/SchemeTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -455,15 +309,6 @@
 			buildConfigurations = (
 				B4A21284172E9E3400C699BC /* Debug */,
 				B4A21285172E9E3400C699BC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B4ACBB08172FBE5700FC9EDE /* Build configuration list for PBXNativeTarget "SchemeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B4ACBB06172FBE5700FC9EDE /* Debug */,
-				B4ACBB07172FBE5700FC9EDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

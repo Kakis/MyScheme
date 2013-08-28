@@ -19,8 +19,7 @@
                         sender:@""
                       receiver:@""
                           type:@""
-                       message:@""
-                     isPrivate:NO];
+                       message:@""];
 }
 
 -(id)initWithTitle:(NSString *)title
@@ -29,7 +28,6 @@
           receiver:(NSString *)receiver
               type:(NSString *)type
            message:(NSString *)message
-         isPrivate:(BOOL)YesOrNo
 {
     self = [super init];
     
@@ -40,33 +38,9 @@
         self.receiver = receiver;
         self.type = type;
         self.message = message;
-        self.isPrivate = NO;
     }
     return self;
 }
-
-//-(id)initWithSMS:(NSString *)sender
-//        receiver:(NSString *)receiver
-//         subject:(NSString *)subject
-//            type:(NSString *)type
-//    messageToAll:(NSString *)messageToAll
-//  privateMessage:(NSString *)privateMessage
-//
-//{
-//    self = [super init];
-//    
-//    if (self) {
-//        self.sender = sender;
-//        self.receiver = receiver;
-//        self.subject = subject;
-//        self.type = type;
-//        self.messageToAll = messageToAll;
-//        self.privateMessage = privateMessage;
-//        self->_id = [[NSUUID UUID] UUIDString];
-//    }
-//    return self;
-//}
-
 
 -(NSUInteger)hash
 {

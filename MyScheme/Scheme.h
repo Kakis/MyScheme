@@ -62,7 +62,7 @@ typedef void (^GetObjectResponce)(NSArray *getObject);
 -(BOOL)addNewMessage:(Message *)message
        adminPassword:(NSString *)adminpassword;
 
--(BOOL)saveMessage:(Message*)message
+-(BOOL)saveMessage:(Message *)message
      adminPassword:(NSString *)adminpassword;
 
 -(BOOL)getPrivateMessagesFor:(Student *)student
@@ -73,9 +73,10 @@ typedef void (^GetObjectResponce)(NSArray *getObject);
 
 #pragma mark - Managing students
 -(BOOL)addNewStudent:(Student *)student
-       adminPassword:(NSString *)password;
+       adminPassword:(NSString *)adminpassword;
 
--(void)saveStudentToDb:(Student *)student;
+-(BOOL)saveStudentToDb:(Student *)student
+         adminPassword:(NSString *)adminpassword;
 
 -(void)getStudent:(Student *)studentName
      onCompletion:(GetStudentResponce)getStudentResponce;
