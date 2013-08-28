@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4699CB617CE32EB00BE56A5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4ACBAF4172FBE5700FC9EDE /* SenTestingKit.framework */; };
+		B4699CB717CE32EB00BE56A5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4ACBAF6172FBE5700FC9EDE /* Cocoa.framework */; };
+		B4699CBD17CE32EB00BE56A5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4699CBB17CE32EB00BE56A5 /* InfoPlist.strings */; };
+		B4699CC017CE32EB00BE56A5 /* SchemeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4699CBF17CE32EB00BE56A5 /* SchemeTests.m */; };
+		B4699CC517CE335D00BE56A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A2127B172E9E3400C699BC /* main.m */; };
+		B4699CC617CE336100BE56A5 /* Scheme.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCBEC4172EE31700DF6712 /* Scheme.m */; };
+		B4699CC717CE336900BE56A5 /* Admin.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A21287172E9EB500C699BC /* Admin.m */; };
+		B4699CC817CE336C00BE56A5 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A2128D172E9F0900C699BC /* Student.m */; };
+		B4699CC917CE337000BE56A5 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9307D17C7711E00EBE5F7 /* Message.m */; };
+		B4699CCA17CE337900BE56A5 /* Lesson.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCBEC7172EF0F000DF6712 /* Lesson.m */; };
+		B4699CCC17CE348400BE56A5 /* Message+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9308317C772F200EBE5F7 /* Message+Json.m */; };
+		B4699CCD17CE348800BE56A5 /* Student+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ACBB0B172FC5F200FC9EDE /* Student+Json.m */; };
+		B4699CCE17CE349000BE56A5 /* Lesson+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ACBB0F172FC8F700FC9EDE /* Lesson+Json.m */; };
 		B4A21279172E9E3400C699BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A21278172E9E3400C699BC /* Foundation.framework */; };
 		B4A2127C172E9E3400C699BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A2127B172E9E3400C699BC /* main.m */; };
 		B4A21280172E9E3400C699BC /* MyScheme.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4A2127F172E9E3400C699BC /* MyScheme.1 */; };
@@ -34,6 +47,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B4699CB517CE32EB00BE56A5 /* SchemeTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SchemeTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4699CBA17CE32EB00BE56A5 /* SchemeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SchemeTests-Info.plist"; sourceTree = "<group>"; };
+		B4699CBC17CE32EB00BE56A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B4699CBE17CE32EB00BE56A5 /* SchemeTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchemeTests.h; sourceTree = "<group>"; };
+		B4699CBF17CE32EB00BE56A5 /* SchemeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchemeTests.m; sourceTree = "<group>"; };
+		B4699CC117CE32EB00BE56A5 /* SchemeTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SchemeTests-Prefix.pch"; sourceTree = "<group>"; };
 		B4A21275172E9E3400C699BC /* MyScheme */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MyScheme; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A21278172E9E3400C699BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B4A2127B172E9E3400C699BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -64,6 +83,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B4699CB117CE32EB00BE56A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4699CB617CE32EB00BE56A5 /* SenTestingKit.framework in Frameworks */,
+				B4699CB717CE32EB00BE56A5 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B4A21272172E9E3400C699BC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -75,10 +103,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B4699CB817CE32EB00BE56A5 /* SchemeTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4699CBE17CE32EB00BE56A5 /* SchemeTests.h */,
+				B4699CBF17CE32EB00BE56A5 /* SchemeTests.m */,
+				B4699CB917CE32EB00BE56A5 /* Supporting Files */,
+			);
+			path = SchemeTests;
+			sourceTree = "<group>";
+		};
+		B4699CB917CE32EB00BE56A5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B4699CBA17CE32EB00BE56A5 /* SchemeTests-Info.plist */,
+				B4699CBB17CE32EB00BE56A5 /* InfoPlist.strings */,
+				B4699CC117CE32EB00BE56A5 /* SchemeTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		B4A2126C172E9E3400C699BC = {
 			isa = PBXGroup;
 			children = (
 				B4A2127A172E9E3400C699BC /* MyScheme */,
+				B4699CB817CE32EB00BE56A5 /* SchemeTests */,
 				B4A21277172E9E3400C699BC /* Frameworks */,
 				B4A21276172E9E3400C699BC /* Products */,
 				B4A2127D172E9E3400C699BC /* Supporting Files */,
@@ -89,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				B4A21275172E9E3400C699BC /* MyScheme */,
+				B4699CB517CE32EB00BE56A5 /* SchemeTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,6 +202,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B4699CB417CE32EB00BE56A5 /* SchemeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4699CC417CE32EB00BE56A5 /* Build configuration list for PBXNativeTarget "SchemeTests" */;
+			buildPhases = (
+				B4699CB017CE32EB00BE56A5 /* Sources */,
+				B4699CB117CE32EB00BE56A5 /* Frameworks */,
+				B4699CB217CE32EB00BE56A5 /* Resources */,
+				B4699CB317CE32EB00BE56A5 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SchemeTests;
+			productName = SchemeTests;
+			productReference = B4699CB517CE32EB00BE56A5 /* SchemeTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		B4A21274172E9E3400C699BC /* MyScheme */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4A21283172E9E3400C699BC /* Build configuration list for PBXNativeTarget "MyScheme" */;
@@ -191,11 +259,56 @@
 			projectRoot = "";
 			targets = (
 				B4A21274172E9E3400C699BC /* MyScheme */,
+				B4699CB417CE32EB00BE56A5 /* SchemeTests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		B4699CB217CE32EB00BE56A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4699CBD17CE32EB00BE56A5 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B4699CB317CE32EB00BE56A5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		B4699CB017CE32EB00BE56A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4699CC017CE32EB00BE56A5 /* SchemeTests.m in Sources */,
+				B4699CC517CE335D00BE56A5 /* main.m in Sources */,
+				B4699CC617CE336100BE56A5 /* Scheme.m in Sources */,
+				B4699CC717CE336900BE56A5 /* Admin.m in Sources */,
+				B4699CC817CE336C00BE56A5 /* Student.m in Sources */,
+				B4699CC917CE337000BE56A5 /* Message.m in Sources */,
+				B4699CCA17CE337900BE56A5 /* Lesson.m in Sources */,
+				B4699CCC17CE348400BE56A5 /* Message+Json.m in Sources */,
+				B4699CCD17CE348800BE56A5 /* Student+Json.m in Sources */,
+				B4699CCE17CE349000BE56A5 /* Lesson+Json.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B4A21271172E9E3400C699BC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -214,7 +327,44 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		B4699CBB17CE32EB00BE56A5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4699CBC17CE32EB00BE56A5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		B4699CC217CE32EB00BE56A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SchemeTests/SchemeTests-Prefix.pch";
+				INFOPLIST_FILE = "SchemeTests/SchemeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		B4699CC317CE32EB00BE56A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SchemeTests/SchemeTests-Prefix.pch";
+				INFOPLIST_FILE = "SchemeTests/SchemeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		B4A21281172E9E3400C699BC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -295,6 +445,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B4699CC417CE32EB00BE56A5 /* Build configuration list for PBXNativeTarget "SchemeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4699CC217CE32EB00BE56A5 /* Debug */,
+				B4699CC317CE32EB00BE56A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		B4A21270172E9E3400C699BC /* Build configuration list for PBXProject "MyScheme" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

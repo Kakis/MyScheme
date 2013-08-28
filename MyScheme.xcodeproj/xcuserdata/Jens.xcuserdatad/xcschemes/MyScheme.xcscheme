@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B4ACBAF2172FBE5700FC9EDE"
+               BlueprintIdentifier = "B4699CB417CE32EB00BE56A5"
                BuildableName = "SchemeTests.octest"
                BlueprintName = "SchemeTests"
                ReferencedContainer = "container:MyScheme.xcodeproj">

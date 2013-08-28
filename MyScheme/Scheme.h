@@ -24,23 +24,14 @@ typedef void (^GetObjectResponce)(NSArray *getObject);
             students:(NSArray *)studentsToAdd
                 week:(int *)week;
 
-#pragma mark - Managing lessons and schedule
+#pragma mark - Managing lessons
 -(BOOL)addNewLesson:(Lesson *)lesson
       adminPassword:(NSString *)password;
 
 -(BOOL)saveLessonToDb:(Lesson *)lesson
         adminPassword:(NSString *)password;
 
--(void)getScheduleForCourse:(NSString *)course
-                       Week:(NSString *)week
-               onCompletion:(GetObjectResponce)getObjectResponce;
-
--(void)getScheduleForCourse:(NSString *)course
-                       Week:(NSString *)week
-                     andDay:(NSString *)day
-               onCompletion:(GetObjectResponce)getObjectResponce;
-
--(void)getLesson:(NSString *)name
+-(BOOL)getLesson:(NSString *)name
     onCompletion:(GetObjectResponce)getObjectResponce;
 
 -(BOOL)updateLesson:(Lesson *)lesson
@@ -48,12 +39,22 @@ typedef void (^GetObjectResponce)(NSArray *getObject);
              andRev:(NSString *)lessonRev
       adminPassword:(NSString *)password;
 
+#pragma mark - Managing schedule
+-(BOOL)getScheduleForCourse:(NSString *)course
+                       Week:(NSString *)week
+               onCompletion:(GetObjectResponce)getObjectResponce;
+
+-(BOOL)getScheduleForCourse:(NSString *)course
+                       Week:(NSString *)week
+                     andDay:(NSString *)day
+               onCompletion:(GetObjectResponce)getObjectResponce;
+
 #pragma mark - Managing assignments
--(void)getAssignmentsForCourse:(NSString *)course
+-(BOOL)getAssignmentsForCourse:(NSString *)course
                           Week:(NSString *)week
                   onCompletion:(GetObjectResponce)getObjectResponce;
 
--(void)getAssignmentsForCourse:(NSString *)course
+-(BOOL)getAssignmentsForCourse:(NSString *)course
                           Week:(NSString *)week
                         andDay:(NSString *)day
                   onCompletion:(GetObjectResponce)getObjectResponce;
@@ -78,13 +79,13 @@ typedef void (^GetObjectResponce)(NSArray *getObject);
 -(BOOL)saveStudentToDb:(Student *)student
          adminPassword:(NSString *)adminpassword;
 
--(void)getStudent:(Student *)studentName
+-(BOOL)getStudent:(Student *)studentName
      onCompletion:(GetObjectResponce)getObjectResponce;
 
--(BOOL)updateStudent:(Student *)student
-              withId:(NSString *)studentId
-              andRev:(NSString *)studentRev
-       adminPassword:(NSString *)password;
+//-(BOOL)updateStudent:(Student *)student
+//              withId:(NSString *)studentId
+//              andRev:(NSString *)studentRev
+//       adminPassword:(NSString *)password;
 
 
 

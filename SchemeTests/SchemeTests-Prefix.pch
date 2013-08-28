@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'SchemeTests' target in the 'SchemeTests' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

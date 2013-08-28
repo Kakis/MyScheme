@@ -91,7 +91,7 @@ static NSString * const viewAllObjectiveCStudents = @"http://kakis.iriscouch.com
 }
 
 
-#pragma mark - Managing lessons and schedule
+#pragma mark - Managing lessons
 
 -(BOOL)addNewLesson:(Lesson *)lesson
       adminPassword:(NSString *)password
@@ -188,7 +188,72 @@ static NSString * const viewAllObjectiveCStudents = @"http://kakis.iriscouch.com
 }
 
 
--(void)getScheduleForCourse:(NSString *)course
+-(BOOL)getLesson:(NSString *)name
+    onCompletion:(GetObjectResponce)getObjectResponce
+{
+    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:urlForLessons];
+    [strUrl appendString:viewLesson];
+    [strUrl appendString:@"%22"];
+    [strUrl appendString:name];
+    [strUrl appendString:@"%22"];
+    
+    NSURL *url = [NSURL URLWithString:strUrl];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               
+                               NSArray *foundLesson = @[data];
+                               
+                               getObjectResponce(foundLesson);
+                           }];
+    
+    NSRunLoop *loop = [NSRunLoop currentRunLoop];
+    [loop run];
+    
+    return YES;
+}
+
+
+-(BOOL)updateLesson:(Lesson *)lesson
+             withId:(NSString *)lessonId
+             andRev:(NSString *)lessonRev
+      adminPassword:(NSString *)password
+{
+    if([password isEqualToString:@"admin"]){
+        
+        NSDictionary *lessonAsJson = [self serializeObjectToJson:lesson];
+        
+        NSData *lessonAsData = [NSJSONSerialization dataWithJSONObject:lessonAsJson
+                                                               options:NSJSONWritingPrettyPrinted
+                                                                 error:NULL];
+        
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://kakis.iriscouch.com/schedule_lessons/%@?rev=%@",lessonId, lessonRev]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+        
+        [request setHTTPMethod:@"PUT"];
+        [request setHTTPBody:lessonAsData];
+        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        
+        NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:nil];
+        [connection start];
+        
+        NSRunLoop *loop = [NSRunLoop currentRunLoop];
+        [loop run];
+        
+        return YES;
+    }
+    return YES;
+}
+
+
+#pragma mark - Managing Schedule
+
+-(BOOL)getScheduleForCourse:(NSString *)course
                        Week:(NSString *)week
                onCompletion:(GetObjectResponce)getObjectResponce
 {
@@ -223,10 +288,12 @@ static NSString * const viewAllObjectiveCStudents = @"http://kakis.iriscouch.com
     
     NSRunLoop *loop = [NSRunLoop currentRunLoop];
     [loop run];
+    
+    return YES;
 }
 
 
--(void)getScheduleForCourse:(NSString *)course
+-(BOOL)getScheduleForCourse:(NSString *)course
                        Week:(NSString *)week
                      andDay:(NSString *)day
                onCompletion:(GetObjectResponce)getObjectResponce
@@ -262,71 +329,14 @@ static NSString * const viewAllObjectiveCStudents = @"http://kakis.iriscouch.com
     
     NSRunLoop *loop = [NSRunLoop currentRunLoop];
     [loop run];
-}
-
--(void)getLesson:(NSString *)name
-    onCompletion:(GetObjectResponce)getObjectResponce
-{
-    NSMutableString *strUrl = [[NSMutableString alloc]initWithString:urlForLessons];
-    [strUrl appendString:viewLesson];
-    [strUrl appendString:@"%22"];
-    [strUrl appendString:name];
-    [strUrl appendString:@"%22"];
     
-    NSURL *url = [NSURL URLWithString:strUrl];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:queue
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               
-                               NSArray *foundLesson = @[data];
-                               
-                               getObjectResponce(foundLesson);
-                           }];
-    
-    NSRunLoop *loop = [NSRunLoop currentRunLoop];
-    [loop run];
-}
-
--(BOOL)updateLesson:(Lesson *)lesson
-             withId:(NSString *)lessonId
-             andRev:(NSString *)lessonRev
-      adminPassword:(NSString *)password
-{
-    if([password isEqualToString:@"admin"]){
-
-        NSDictionary *lessonAsJson = [self serializeObjectToJson:lesson];
-
-        NSData *lessonAsData = [NSJSONSerialization dataWithJSONObject:lessonAsJson
-                                                                options:NSJSONWritingPrettyPrinted
-                                                                  error:NULL];
-
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://kakis.iriscouch.com/schedule_lessons/%@?rev=%@",lessonId, lessonRev]];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-
-        [request setHTTPMethod:@"PUT"];
-        [request setHTTPBody:lessonAsData];
-        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-
-        NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:nil];
-        [connection start];
-        
-        NSRunLoop *loop = [NSRunLoop currentRunLoop];
-        [loop run];
-        
-        return YES;
-    }
     return YES;
 }
 
 
 #pragma mark - Managing Assignments
 
--(void)getAssignmentsForCourse:(NSString *)course
+-(BOOL)getAssignmentsForCourse:(NSString *)course
                           Week:(NSString *)week
                   onCompletion:(GetObjectResponce)getObjectResponce
 {
@@ -361,10 +371,12 @@ static NSString * const viewAllObjectiveCStudents = @"http://kakis.iriscouch.com
     
     NSRunLoop *loop = [NSRunLoop currentRunLoop];
     [loop run];
+    
+    return YES;
 }
 
 
--(void)getAssignmentsForCourse:(NSString *)course
+-(BOOL)getAssignmentsForCourse:(NSString *)course
                           Week:(NSString *)week
                         andDay:(NSString *)day
                   onCompletion:(GetObjectResponce)getObjectResponce
@@ -400,6 +412,8 @@ static NSString * const viewAllObjectiveCStudents = @"http://kakis.iriscouch.com
     
     NSRunLoop *loop = [NSRunLoop currentRunLoop];
     [loop run];
+    
+    return YES;
 }
 
 
@@ -418,6 +432,7 @@ static NSString * const viewAllObjectiveCStudents = @"http://kakis.iriscouch.com
     }
     return YES;
 }
+
 
 -(BOOL)saveMessage:(Message *)message
      adminPassword:(NSString *)adminpassword
@@ -463,6 +478,7 @@ static NSString * const viewAllObjectiveCStudents = @"http://kakis.iriscouch.com
     return NO;
 }
 
+
 -(BOOL)getPrivateMessagesFor:(Student *)student
                onCompletion:(GetObjectResponce)getObjectResponce
 {
@@ -495,6 +511,7 @@ static NSString * const viewAllObjectiveCStudents = @"http://kakis.iriscouch.com
     
     return YES;
 }
+
 
 -(BOOL)getMessagesForCourse:(NSString *)course
                onCompletion:(GetObjectResponce)getObjectResponce
@@ -545,6 +562,7 @@ static NSString * const viewAllObjectiveCStudents = @"http://kakis.iriscouch.com
     return YES;
 }
 
+
 -(BOOL)saveStudentToDb:(Student *)student
          adminPassword:(NSString *)adminpassword
 {
@@ -587,7 +605,8 @@ static NSString * const viewAllObjectiveCStudents = @"http://kakis.iriscouch.com
     return NO;
 }
 
--(void)getStudent:(Student *)studentName
+
+-(BOOL)getStudent:(Student *)studentName
      onCompletion:(GetObjectResponce)getObjectResponce
 {
     NSMutableString *strUrl = [[NSMutableString alloc]initWithString:viewStudent];
@@ -612,39 +631,42 @@ static NSString * const viewAllObjectiveCStudents = @"http://kakis.iriscouch.com
     
     NSRunLoop *loop = [NSRunLoop currentRunLoop];
     [loop run];
-}
-
--(BOOL)updateStudent:(Student *)student
-              withId:(NSString *)studentId
-              andRev:(NSString *)studentRev
-       adminPassword:(NSString *)password
-{
-    if([password isEqualToString:@"admin"])
-    {
-        NSDictionary *studentAsJson = [self serializeObjectToJson:student];
-        
-        NSData *studentAsData = [NSJSONSerialization dataWithJSONObject:studentAsJson
-                                                            options:NSJSONWritingPrettyPrinted
-                                                              error:NULL];
-        
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://kakis.iriscouch.com/schedule_students/%@?rev=%@",studentId, studentRev]];
-        
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-        
-        [request setHTTPMethod:@"PUT"];
-        [request setHTTPBody:studentAsData];
-        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-        
-        NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:nil];
-        [connection start];
-        
-        NSRunLoop *loop = [NSRunLoop currentRunLoop];
-        [loop run];
-        
-        return YES;
-    }
+    
     return YES;
 }
+
+
+//-(BOOL)updateStudent:(Student *)student
+//              withId:(NSString *)studentId
+//              andRev:(NSString *)studentRev
+//       adminPassword:(NSString *)password
+//{
+//    if([password isEqualToString:@"admin"])
+//    {
+//        NSDictionary *studentAsJson = [self serializeObjectToJson:student];
+//        
+//        NSData *studentAsData = [NSJSONSerialization dataWithJSONObject:studentAsJson
+//                                                            options:NSJSONWritingPrettyPrinted
+//                                                              error:NULL];
+//        
+//        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://kakis.iriscouch.com/schedule_students/%@?rev=%@",studentId, studentRev]];
+//        
+//        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+//        
+//        [request setHTTPMethod:@"PUT"];
+//        [request setHTTPBody:studentAsData];
+//        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+//        
+//        NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:nil];
+//        [connection start];
+//        
+//        NSRunLoop *loop = [NSRunLoop currentRunLoop];
+//        [loop run];
+//        
+//        return YES;
+//    }
+//    return YES;
+//}
 
 
 -(NSSet*)allStudents

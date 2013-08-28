@@ -394,7 +394,7 @@ int main(int argc, const char * argv[])
         
 
 ////--- Ändra något i "iOS_lesson1" längst upp --------------------------------------------------------------//
-//----- (dock inte name eller course som vi använder för GET & PUT) -----------------------------------------//
+//----- (dock inte name, course, week eller day som vi använder för GET & PUT) ------------------------------//
 //----- Kopiera sedan in det nyss returnerade rev-numret från "iOS_lesson1" ---------------------------------//
 //----- och klistra in det i strängen märkt andRev:@"" här nedan innan du kör update ------------------------//
         
