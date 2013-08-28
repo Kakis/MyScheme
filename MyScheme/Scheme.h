@@ -41,7 +41,7 @@ typedef void (^GetObjectResponce)(NSArray *getObject);
                onCompletion:(GetObjectResponce)getObjectResponce;
 
 -(void)getLesson:(NSString *)name
-     onCompletion:(GetStudentResponce)getObjectResponce;
+    onCompletion:(GetObjectResponce)getObjectResponce;
 
 -(BOOL)updateLesson:(Lesson *)lesson
              withId:(NSString *)lessonId
@@ -79,10 +79,7 @@ typedef void (^GetObjectResponce)(NSArray *getObject);
          adminPassword:(NSString *)adminpassword;
 
 -(void)getStudent:(Student *)studentName
-     onCompletion:(GetStudentResponce)getStudentResponce;
-
--(void)getAllStudents:(NSString *)typeStudent
-         onCompletion:(GetStudentResponce)getStudentResponce;
+     onCompletion:(GetObjectResponce)getObjectResponce;
 
 -(BOOL)updateStudent:(Student *)student
               withId:(NSString *)studentId

@@ -200,7 +200,7 @@ int main(int argc, const char * argv[])
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
 
-//        [scheme addNewMessage:objective_c_message1 adminPassword:@"admin"];
+//        [scheme addNewMessage:objective_c_message1];
         
 //        [scheme saveMessage:objective_c_message1 adminPassword:@"admin"];
 
@@ -223,7 +223,7 @@ int main(int argc, const char * argv[])
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         
-//        [scheme addNewMessage:private_message1 adminPassword:@"admin"];
+//        [scheme addNewMessage:private_message1];
 
 //        [scheme saveMessage:private_message1 adminPassword:@"admin"];
         
